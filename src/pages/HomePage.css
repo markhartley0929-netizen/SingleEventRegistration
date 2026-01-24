@@ -69,3 +69,17 @@ h1 {
   border: 1px solid #555;
   color: #fff;
 }
+
+.location {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.map-link {
+  display: inline-block;
+  margin-top: 6px;
+  color: #1a73e8;
+  text-decoration: underline;
+  font-weight: 500;
+}

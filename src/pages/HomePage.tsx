@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./HomePage.css";
 
 export default function HomePage() {
@@ -13,21 +14,31 @@ export default function HomePage() {
         <h1>Memorial Day Draft Tournament</h1>
 
         <p className="subhead">
-          Competitive Slowpitch • Draft Format • One Weekend
+          Competitive Slowpitch Softball • Draft Format
         </p>
 
-        <div className="meta">
-          <span>📅 Memorial Day Weekend</span>
-          <span>📍 Orlando, FL</span>
+        {/* LOCATION BLOCK */}
+        <div className="location">
+          <p><strong>📍 Lake Fairview Softball Complex</strong></p>
+          <p>
+            2200 Lee Rd<br />
+            Orlando, FL 32810
+          </p>
+
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=2200+Lee+Rd+Orlando+FL+32810"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="map-link"
+          >
+            View on Google Maps
+          </a>
         </div>
 
         <div className="actions">
-          <a href="/register" className="btn primary">
+          <Link to="/register" className="btn primary">
             Register Now
-          </a>
-          <a href="#details" className="btn secondary">
-            View Details
-          </a>
+          </Link>
         </div>
       </header>
     </div>
