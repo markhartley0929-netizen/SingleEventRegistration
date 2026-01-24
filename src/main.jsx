@@ -1,7 +1,11 @@
+import React from "react";
 import ReactDOM from "react-dom/client";
+import App from "./App";
 
 console.log("main.jsx loaded");
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <h1 style={{ padding: 40 }}>🔥 React is mounting</h1>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );
