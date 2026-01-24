@@ -78,8 +78,19 @@ h1 {
 
 .map-link {
   display: inline-block;
-  margin-top: 6px;
+  margin-top: 8px;
+  margin-bottom: 22px; /* 👈 THIS is the key change */
   color: #1a73e8;
   text-decoration: underline;
   font-weight: 500;
 }
+
+.event-dates {
+  margin-top: 8px;
+  margin-bottom: 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #ffffff;
+}
+

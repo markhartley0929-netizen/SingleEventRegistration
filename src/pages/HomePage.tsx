@@ -13,6 +13,11 @@ export default function HomePage() {
 
         <h1>Memorial Day Draft Tournament</h1>
 
+        {/* EVENT DATES */}
+        <p className="event-dates">
+          May 24–26, 2026
+        </p>
+
         <p className="subhead">
           Competitive Slowpitch Softball • Draft Format
         </p>
