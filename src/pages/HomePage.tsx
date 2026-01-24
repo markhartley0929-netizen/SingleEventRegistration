@@ -19,8 +19,16 @@ export default function HomePage() {
         </p>
 
         <p className="subhead">
-          Competitive Slowpitch Softball • Draft Format
+          Slowpitch Softball • Draft Format
         </p>
+
+        {/* PRIZE PACKAGE */}
+        <div className="prizes">
+          <h3>🏆 Prize Package</h3>
+          <p><strong>1st Place:</strong> 12 Bats</p>
+          <p><strong>2nd Place:</strong> 12 Softball Bags</p>
+          <p><strong>3rd Place:</strong> TBD</p>
+        </div>
 
         {/* LOCATION BLOCK */}
         <div className="location">

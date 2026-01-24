@@ -94,3 +94,19 @@ h1 {
   color: #ffffff;
 }
 
+.prizes {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.prizes h3 {
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+}
+
+.prizes p {
+  margin: 4px 0;
+  font-size: 1rem;
+}
+
