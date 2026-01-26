@@ -167,32 +167,83 @@ export default function PlayerRegistrationForm({
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    // Block submit if ZIP invalid (primary always required; companion only if not using same)
-    const hasZipError =
-      !!primaryZipError || (!!registeringWithCompanion && !useSameAddress && !!companionZipError);
+  const hasZipError =
+    !!primaryZipError ||
+    (!!registeringWithCompanion && !useSameAddress && !!companionZipError);
 
-    if (hasZipError) {
-      alert("Please fix the ZIP code before submitting.");
-      return;
-    }
+  if (hasZipError) {
+    alert("Please fix the ZIP code before submitting.");
+    return;
+  }
 
-  const payload = {
-  eventId,
-  primary,
-  companion: registeringWithCompanion ? companion : null,
+  // REQUIRED: backend expects this
+  const organizationId = "d986892d-a116-40b2-98c5-d04e27648817";
+
+  const primaryPayload = {
+    firstName: primary.firstName,
+    lastName: primary.lastName,
+    email: primary.email,
+    sex: primary.sex,
+    organizationId,
+    player: {
+      jerseySize: primary.jerseySize || null,
+      shortSize: primary.shortSize || null,
+      preferredPosition: primary.preferredPosition || null,
+      secondaryPosition: primary.secondaryPosition || null,
+      skillLevel: primary.skillLevel || null,
+    },
+  };
+
+  let payload: any;
+
+  if (!registeringWithCompanion) {
+    // SINGLE PLAYER
+    payload = primaryPayload;
+  } else {
+    // PRIMARY + COMPANION
+    payload = {
+      organizationId,
+      primary: primaryPayload,
+      companions: [
+        {
+          firstName: companion.firstName,
+          lastName: companion.lastName,
+          email: companion.email,
+          sex: companion.sex,
+          player: {
+            jerseySize: companion.jerseySize || null,
+            shortSize: companion.shortSize || null,
+            preferredPosition: companion.preferredPosition || null,
+            secondaryPosition: companion.secondaryPosition || null,
+          },
+        },
+      ],
+    };
+  }
+
+  const res = await fetch("/api/registerSingleEvent", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await res.json();
+
+  if (res.status === 200) {
+    alert("✅ Registration successful");
+    return;
+  }
+
+  if (res.status === 409) {
+    alert("ℹ️ You are already registered for this event");
+    return;
+  }
+
+  alert(data.message || "Registration failed");
 };
 
-
-    const res = await fetch("/api/players", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    alert(res.ok ? "Registration successful" : "Registration failed");
-  };
 
   return (
     <div className="register-page">
