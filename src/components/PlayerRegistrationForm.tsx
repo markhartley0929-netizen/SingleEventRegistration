@@ -69,6 +69,9 @@ export default function PlayerRegistrationForm({
 
   const [registeringWithCompanion, setRegisteringWithCompanion] = useState(false);
   const [useSameAddress, setUseSameAddress] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+
 
   const [primary, setPrimary] = useState({
     firstName: "",
@@ -181,20 +184,22 @@ export default function PlayerRegistrationForm({
   // REQUIRED: backend expects this
   const organizationId = "d986892d-a116-40b2-98c5-d04e27648817";
 
-  const primaryPayload = {
-    firstName: primary.firstName,
-    lastName: primary.lastName,
-    email: primary.email,
-    sex: primary.sex,
-    organizationId,
-    player: {
-      jerseySize: primary.jerseySize || null,
-      shortSize: primary.shortSize || null,
-      preferredPosition: primary.preferredPosition || null,
-      secondaryPosition: primary.secondaryPosition || null,
-      skillLevel: primary.skillLevel || null,
-    },
-  };
+const primaryPayload = {
+  eventId, // ✅ REQUIRED
+  firstName: primary.firstName,
+  lastName: primary.lastName,
+  email: primary.email,
+  sex: primary.sex,
+  organizationId,
+  player: {
+    jerseySize: primary.jerseySize || null,
+    shortSize: primary.shortSize || null,
+    preferredPosition: primary.preferredPosition || null,
+    secondaryPosition: primary.secondaryPosition || null,
+    skillLevel: primary.skillLevel || null,
+  },
+};
+
 
   let payload: any;
 
@@ -203,41 +208,50 @@ export default function PlayerRegistrationForm({
     payload = primaryPayload;
   } else {
     // PRIMARY + COMPANION
-    payload = {
-      organizationId,
-      primary: primaryPayload,
-      companions: [
-        {
-          firstName: companion.firstName,
-          lastName: companion.lastName,
-          email: companion.email,
-          sex: companion.sex,
-          player: {
-            jerseySize: companion.jerseySize || null,
-            shortSize: companion.shortSize || null,
-            preferredPosition: companion.preferredPosition || null,
-            secondaryPosition: companion.secondaryPosition || null,
-          },
-        },
-      ],
-    };
-  }
-
-const res = await fetch(
-  "https://single-event-registration-api-c5gsfcdaa3gef0ef.eastus2-01.azurewebsites.net/api/registerSingleEvent",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
+ payload = {
+  eventId, // ✅ REQUIRED BY BACKEND
+  organizationId,
+  primary: primaryPayload,
+  companions: [
+    {
+      firstName: companion.firstName,
+      lastName: companion.lastName,
+      email: companion.email,
+      sex: companion.sex,
+      player: {
+        jerseySize: companion.jerseySize || null,
+        shortSize: companion.shortSize || null,
+        preferredPosition: companion.preferredPosition || null,
+        secondaryPosition: companion.secondaryPosition || null,
+      },
     },
-    body: JSON.stringify(payload),
+  ],
+};
+
   }
-);
 
+setSubmitting(true);
 
-  const data = await res.json();
+try {
+  const res = await fetch(
+    "https://single-event-registration-api-c5gsfcdaa3gef0ef.eastus2-01.azurewebsites.net/api/registerSingleEvent",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    }
+  );
 
-  if (res.status === 200) {
+  let data: any = null;
+  try {
+    data = await res.json();
+  } catch {
+    // backend may return empty body
+  }
+
+  if (res.ok) {
     alert("✅ Registration successful");
     return;
   }
@@ -247,7 +261,11 @@ const res = await fetch(
     return;
   }
 
-  alert(data.message || "Registration failed");
+  alert(data?.message || "Registration failed");
+} finally {
+  setSubmitting(false);
+}
+
 };
 
 
@@ -583,7 +601,14 @@ const res = await fetch(
           </>
         )}
 
-        <button type="submit" className="submit-btn">Register</button>
+       <button
+  type="submit"
+  className="submit-btn"
+  disabled={submitting}
+>
+  {submitting ? "Submitting..." : "Register"}
+</button>
+
       </form>
     </div>
   );
