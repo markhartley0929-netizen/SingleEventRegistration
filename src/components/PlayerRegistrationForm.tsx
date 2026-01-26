@@ -11,6 +11,8 @@ import React, { useEffect, useMemo, useState } from "react";
 
 import "../styles/register.css";
 
+
+
 /* =========================
    Positions
 ========================= */
@@ -28,6 +30,13 @@ import { getVisibleApparelSizes } from "../utils/apparelSizeRules";
    Accessories
 ========================= */
 import { AccessoryType, AccessorySize } from "../constants/accessories";
+
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+ 
+if (!API_BASE) {
+  throw new Error("VITE_API_BASE_URL is not defined");
+}
+
 
 const ACCESSORY_SIZES: readonly AccessorySize[] = ["XSM", "SM/MD", "LG/XLG"];
 
@@ -234,15 +243,16 @@ setSubmitting(true);
 
 try {
   const res = await fetch(
-    "https://single-event-registration-api-c5gsfcdaa3gef0ef.eastus2-01.azurewebsites.net/api/registerSingleEvent",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    }
-  );
+  `${API_BASE}/api/registerSingleEvent`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  }
+);
+
 
   let data: any = null;
   try {
