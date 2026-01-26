@@ -31,7 +31,8 @@ import { getVisibleApparelSizes } from "../utils/apparelSizeRules";
 ========================= */
 import { AccessoryType, AccessorySize } from "../constants/accessories";
 
-const API_BASE = "single-event-registration-api-v2-cqd5bferhcbsftda.centralus-01.azurewebsites.net";
+const API_BASE =  "https://single-event-registration-api-v2-cqd5bferhcbsftda.centralus-01.azurewebsites.net/api";
+
 
 
 
@@ -239,7 +240,7 @@ const primaryPayload = {
 setSubmitting(true);
 
 try {
-  const res = await fetch(
+const res = await fetch(
   `${API_BASE}/registerSingleEvent`,
   {
     method: "POST",
@@ -249,6 +250,7 @@ try {
     body: JSON.stringify(payload),
   }
 );
+
 
 
   let data: any = null;
