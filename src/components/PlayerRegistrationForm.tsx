@@ -223,11 +223,17 @@ export default function PlayerRegistrationForm({
     };
   }
 
-  const res = await fetch("/api/registerSingleEvent", {
+const res = await fetch(
+  "https://single-event-registration-api-c5gsfcdaa3gef0ef.eastus2-01.azurewebsites.net/api/registerSingleEvent",
+  {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(payload),
-  });
+  }
+);
+
 
   const data = await res.json();
 
