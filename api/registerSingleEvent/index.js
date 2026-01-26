@@ -42,7 +42,29 @@ module.exports = async function (context, req) {
   try {
     const pool = await sql.connect(process.env.SQL_CONNECTION_STRING);
 
-    const { primary, companion } = req.body || {};
+// -------------------------
+// Normalize payload shapes
+// -------------------------
+let primary;
+let companion = null;
+
+// Legacy single-player payload
+if (req.body?.firstName && req.body?.lastName) {
+  primary = req.body;
+}
+// New primary/companion payload
+else if (req.body?.primary) {
+  primary = req.body.primary;
+  companion = req.body.companion || null;
+} else {
+  context.res = {
+    status: 400,
+    headers: corsHeaders,
+    body: { error: "Invalid request payload" },
+  };
+  return;
+}
+
 
     if (
       !primary?.firstName ||
