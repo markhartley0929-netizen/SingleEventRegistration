@@ -1,8 +1,6 @@
-module.exports = async function (context, req) {
-  context.log("🔥 registerSingleEvent LOADED");
-
 const sql = require("mssql");
 const { v4: uuidv4 } = require("uuid");
+
 
 /* =========================
    HARD-CODED EVENT
