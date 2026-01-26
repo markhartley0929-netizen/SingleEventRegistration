@@ -84,12 +84,12 @@ else if (body?.primary) {
 
 
 
-    if (
-      !primary?.firstName ||
-      !primary?.lastName ||
-      !primary?.email ||
-      !primary?.skillLevel
-    ) {
+if (
+  !primary?.firstName ||
+  !primary?.lastName ||
+  !primary?.email
+) {
+
       context.res = {
         status: 400,
         headers: corsHeaders,
