@@ -240,7 +240,7 @@ setSubmitting(true);
 
 try {
   const res = await fetch(
-  `${API_BASE}/api/registerSingleEvent`,
+  `${API_BASE}/registerSingleEvent`,
   {
     method: "POST",
     headers: {
