@@ -31,7 +31,7 @@ import { getVisibleApparelSizes } from "../utils/apparelSizeRules";
 ========================= */
 import { AccessoryType, AccessorySize } from "../constants/accessories";
 
-const API_BASE = "/api";
+const API_BASE = "single-event-registration-api-v2-cqd5bferhcbsftda.centralus-01.azurewebsites.net";
 
 
 
