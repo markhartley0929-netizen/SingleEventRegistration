@@ -1,3 +1,8 @@
+
+
+
+
+
 const sql = require("mssql");
 const { v4: uuidv4 } = require("uuid");
 
@@ -23,6 +28,7 @@ const corsHeaders = {
 };
 
 module.exports = async function (context, req) {
+  context.log.error("🚨 REGISTER CLICK HIT THIS FUNCTION 🚨");
   context.log("registerSingleEvent called", req.method);
 
   // -------------------------
