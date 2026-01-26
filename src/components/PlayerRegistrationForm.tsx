@@ -257,8 +257,28 @@ export default function PlayerRegistrationForm({
         <input name="email" placeholder="Email" value={primary.email} onChange={handlePrimaryChange} />
 
         <div className="radio-row">
-          <label><input type="radio" name="sex" value="M" onChange={handlePrimaryChange} /> Male</label>
-          <label><input type="radio" name="sex" value="F" onChange={handlePrimaryChange} /> Female</label>
+      <label>
+  <input
+    type="radio"
+    name="sex"
+    value="M"
+    checked={primary.sex === "M"}
+    onChange={handlePrimaryChange}
+  />
+  Male
+</label>
+
+<label>
+  <input
+    type="radio"
+    name="sex"
+    value="F"
+    checked={primary.sex === "F"}
+    onChange={handlePrimaryChange}
+  />
+  Female
+</label>
+
         </div>
 
         <h3>Address</h3>
@@ -402,8 +422,28 @@ export default function PlayerRegistrationForm({
             <input name="email" placeholder="Email" value={companion.email} onChange={handleCompanionChange} />
 
             <div className="radio-row">
-              <label><input type="radio" name="sex" value="M" onChange={handleCompanionChange} /> Male</label>
-              <label><input type="radio" name="sex" value="F" onChange={handleCompanionChange} /> Female</label>
+       <label>
+  <input
+    type="radio"
+    name="sex"
+    value="M"
+    checked={companion.sex === "M"}
+    onChange={handleCompanionChange}
+  />
+  Male
+</label>
+
+<label>
+  <input
+    type="radio"
+    name="sex"
+    value="F"
+    checked={companion.sex === "F"}
+    onChange={handleCompanionChange}
+  />
+  Female
+</label>
+
             </div>
 
             <label className="checkbox-row">
