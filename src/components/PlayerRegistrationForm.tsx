@@ -31,11 +31,8 @@ import { getVisibleApparelSizes } from "../utils/apparelSizeRules";
 ========================= */
 import { AccessoryType, AccessorySize } from "../constants/accessories";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL;
- 
-if (!API_BASE) {
-  throw new Error("VITE_API_BASE_URL is not defined");
-}
+const API_BASE = "/api";
+
 
 
 const ACCESSORY_SIZES: readonly AccessorySize[] = ["XSM", "SM/MD", "LG/XLG"];
