@@ -25,6 +25,25 @@ const corsHeaders = {
 module.exports = async function (context, req) {
   context.log("registerSingleEvent called", req.method);
 
+  // -------------------------
+// FORCE JSON BODY PARSE (SWA FIX)
+// -------------------------
+let body = req.body;
+
+if (!body && req.rawBody) {
+  try {
+    body = JSON.parse(req.rawBody);
+  } catch (err) {
+    context.res = {
+      status: 400,
+      headers: corsHeaders,
+      body: { error: "Invalid JSON body" },
+    };
+    return;
+  }
+}
+
+
   if (req.method === "OPTIONS") {
     context.res = { status: 204, headers: corsHeaders };
     return;
@@ -48,14 +67,12 @@ module.exports = async function (context, req) {
 let primary;
 let companion = null;
 
-// Legacy single-player payload
-if (req.body?.firstName && req.body?.lastName) {
-  primary = req.body;
+if (body?.firstName && body?.lastName) {
+  primary = body;
 }
-// New primary/companion payload
-else if (req.body?.primary) {
-  primary = req.body.primary;
-  companion = req.body.companion || null;
+else if (body?.primary) {
+  primary = body.primary;
+  companion = body.companion || null;
 } else {
   context.res = {
     status: 400,
@@ -64,6 +81,7 @@ else if (req.body?.primary) {
   };
   return;
 }
+
 
 
     if (
