@@ -245,14 +245,7 @@ if (!isCompanion) {
   }
 }
 
-// TEMP DEBUG — inspect mapped data
-context.res = {
-  status: 200,
-  jsonBody: {
-    debugRegistrants: registrants
-  }
-};
-return;
+
 
 
 
