@@ -177,9 +177,10 @@ function mapRegistrant(src, isPrimaryRegistrant) {
     email: src.email,
     sex: src.sex,
 
-    jerseySize: src.jerseySize ?? null,
-    shortSize: src.shortSize ?? null,
-    pantSize: null, // not sent by form yet
+    jerseySize: src.player?.jerseySize ?? null,
+    shortSize: src.player?.shortSize ?? null,
+    pantSize: src.player?.pantSize ?? null,
+
     jerseyNumber: src.jerseyNumber ?? null,
     jerseyName: src.jerseyName ?? null,
 
@@ -187,6 +188,7 @@ function mapRegistrant(src, isPrimaryRegistrant) {
     isPrimaryRegistrant,
   };
 }
+
 
 if (!isCompanion) {
   registrants.push(mapRegistrant(body, true));
