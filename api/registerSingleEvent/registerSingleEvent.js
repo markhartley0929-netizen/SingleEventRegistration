@@ -37,14 +37,25 @@ async function upsertPlayer(tx, {
   email,
   sex,
   player,
+
   jerseySize,
   shortSize,
   pantSize,
   jerseyNumber,
   jerseyName,
+
+  accessoryType,
+  accessorySize,
+
+  streetAddress,
+  city,
+  state,
+  zip,
+
   companionGroupId,
   isPrimaryRegistrant,
 }) {
+
   const emailNorm = normalizeEmail(email);
 
   const existing = await new sql.Request(tx)
@@ -59,42 +70,64 @@ async function upsertPlayer(tx, {
     return existing.recordset[0].PlayerID;
   }
 
-  const inserted = await new sql.Request(tx)
-    .input("FirstName", sql.NVarChar, firstName)
-    .input("LastName", sql.NVarChar, lastName)
-    .input("Email", sql.NVarChar, emailNorm)
-    .input("Sex", sql.NVarChar, sex)
-    .input("PreferredPosition", sql.NVarChar, player?.preferredPosition ?? null)
-    .input("SecondaryPosition", sql.NVarChar, player?.secondaryPosition ?? null)
-    .input("SkillLevel", sql.NVarChar, player?.skillLevel ?? null)
-    .input("JerseySize", sql.NVarChar, jerseySize ?? null)
-    .input("ShortSize", sql.NVarChar, shortSize ?? null)
-    .input("PantSize", sql.NVarChar, pantSize ?? null)
-    .input("JerseyNumber", sql.NVarChar, jerseyNumber ?? null)
-    .input("JerseyName", sql.NVarChar, jerseyName ?? null)
-    .input("CompanionGroupId", sql.UniqueIdentifier, companionGroupId ?? null)
-    .input("IsPrimaryRegistrant", sql.Bit, isPrimaryRegistrant ? 1 : 0)
-    .input("CreatedAt", sql.DateTime2, new Date())
+const inserted = await new sql.Request(tx)
+  .input("FirstName", sql.NVarChar, firstName)
+  .input("LastName", sql.NVarChar, lastName)
+  .input("Email", sql.NVarChar, emailNorm)
+  .input("Sex", sql.NVarChar, sex)
+  .input("PreferredPosition", sql.NVarChar, player?.preferredPosition ?? null)
+  .input("SecondaryPosition", sql.NVarChar, player?.secondaryPosition ?? null)
+  .input("SkillLevel", sql.NVarChar, player?.skillLevel ?? null)
+
+  // 👇 ADD THESE (STEP 4)
+  .input("JerseySize", sql.NVarChar, jerseySize)
+  .input("ShortSize", sql.NVarChar, shortSize)
+  .input("PantSize", sql.NVarChar, pantSize)
+  .input("JerseyNumber", sql.NVarChar, jerseyNumber)
+  .input("JerseyName", sql.NVarChar, jerseyName)
+
+  .input("AccessoryType", sql.NVarChar, accessoryType)
+  .input("AccessorySize", sql.NVarChar, accessorySize)
+
+  .input("StreetAddress", sql.NVarChar, streetAddress)
+  .input("City", sql.NVarChar, city)
+  .input("State", sql.NVarChar, state)
+  .input("Zip", sql.NVarChar, zip)
+
+  .input("CompanionGroupId", sql.UniqueIdentifier, companionGroupId)
+  .input("IsPrimaryRegistrant", sql.Bit, isPrimaryRegistrant ? 1 : 0)
+  .input("CreatedAt", sql.DateTime2, new Date())
     .query(`
-      INSERT INTO dbo.Players (
-        FirstName, LastName, Email, Sex,
-        PreferredPosition, SecondaryPosition,
-        SkillLevel,
-        JerseySize, ShortSize, PantSize,
-        JerseyNumber, JerseyName,
-        CompanionGroupId, IsPrimaryRegistrant,
-        CreatedAt
-      )
-      OUTPUT INSERTED.PlayerID
-      VALUES (
-        @FirstName, @LastName, @Email, @Sex,
-        @PreferredPosition, @SecondaryPosition,
-        @SkillLevel,
-        @JerseySize, @ShortSize, @PantSize,
-        @JerseyNumber, @JerseyName,
-        @CompanionGroupId, @IsPrimaryRegistrant,
-        @CreatedAt
-      )
+INSERT INTO dbo.Players (
+  FirstName, LastName, Email, Sex,
+  PreferredPosition, SecondaryPosition,
+  SkillLevel,
+
+  JerseySize, ShortSize, PantSize,
+  JerseyNumber, JerseyName,
+
+  AccessoryType, AccessorySize,
+  StreetAddress, City, State, Zip,
+
+  CompanionGroupId, IsPrimaryRegistrant,
+  CreatedAt
+)
+OUTPUT INSERTED.PlayerID
+VALUES (
+  @FirstName, @LastName, @Email, @Sex,
+  @PreferredPosition, @SecondaryPosition,
+  @SkillLevel,
+
+  @JerseySize, @ShortSize, @PantSize,
+  @JerseyNumber, @JerseyName,
+
+  @AccessoryType, @AccessorySize,
+  @StreetAddress, @City, @State, @Zip,
+
+  @CompanionGroupId, @IsPrimaryRegistrant,
+  @CreatedAt
+)
+
     `);
 
   return inserted.recordset[0].PlayerID;
@@ -177,17 +210,30 @@ function mapRegistrant(src, isPrimaryRegistrant) {
     email: src.email,
     sex: src.sex,
 
+    // Apparel
     jerseySize: src.player?.jerseySize ?? null,
     shortSize: src.player?.shortSize ?? null,
     pantSize: src.player?.pantSize ?? null,
 
+    // Jersey
     jerseyNumber: src.jerseyNumber ?? null,
     jerseyName: src.jerseyName ?? null,
+
+    // Accessory
+    accessoryType: src.player?.accessoryType ?? null,
+    accessorySize: src.player?.accessorySize ?? null,
+
+    // Address
+    streetAddress: src.address?.street ?? null,
+    city: src.address?.city ?? null,
+    state: src.address?.state ?? null,
+    zip: src.address?.zip ?? null,
 
     player: src.player ?? {},
     isPrimaryRegistrant,
   };
 }
+
 
 
 if (!isCompanion) {
