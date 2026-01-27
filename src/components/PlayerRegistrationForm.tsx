@@ -192,20 +192,35 @@ export default function PlayerRegistrationForm({
   const organizationId = "d986892d-a116-40b2-98c5-d04e27648817";
 
 const primaryPayload = {
-  eventId, // ✅ REQUIRED
+  eventId,
+  organizationId,
+
   firstName: primary.firstName,
   lastName: primary.lastName,
   email: primary.email,
   sex: primary.sex,
-  organizationId,
+
+  jerseyNumber: primary.jerseyNumber || null,
+  jerseyName: primary.jerseyName || null,
+
+  address: {
+    street: primary.address.street || null,
+    city: primary.address.city || null,
+    state: primary.address.state || null,
+    zip: primary.address.zip || null,
+  },
+
   player: {
     jerseySize: primary.jerseySize || null,
     shortSize: primary.shortSize || null,
+    accessoryType: primary.accessoryType || null,
+    accessorySize: primary.accessorySize || null,
     preferredPosition: primary.preferredPosition || null,
     secondaryPosition: primary.secondaryPosition || null,
     skillLevel: primary.skillLevel || null,
   },
 };
+
 
 
   let payload: any;
@@ -219,20 +234,36 @@ const primaryPayload = {
   eventId, // ✅ REQUIRED BY BACKEND
   organizationId,
   primary: primaryPayload,
-  companions: [
-    {
-      firstName: companion.firstName,
-      lastName: companion.lastName,
-      email: companion.email,
-      sex: companion.sex,
-      player: {
-        jerseySize: companion.jerseySize || null,
-        shortSize: companion.shortSize || null,
-        preferredPosition: companion.preferredPosition || null,
-        secondaryPosition: companion.secondaryPosition || null,
-      },
+companions: [
+  {
+    firstName: companion.firstName,
+    lastName: companion.lastName,
+    email: companion.email,
+    sex: companion.sex,
+
+    jerseyNumber: companion.jerseyNumber || null,
+    jerseyName: companion.jerseyName || null,
+
+    address: useSameAddress
+      ? primaryPayload.address
+      : {
+          street: companion.address.street || null,
+          city: companion.address.city || null,
+          state: companion.address.state || null,
+          zip: companion.address.zip || null,
+        },
+
+    player: {
+      jerseySize: companion.jerseySize || null,
+      shortSize: companion.shortSize || null,
+      accessoryType: companion.accessoryType || null,
+      accessorySize: companion.accessorySize || null,
+      preferredPosition: companion.preferredPosition || null,
+      secondaryPosition: companion.secondaryPosition || null,
     },
-  ],
+  },
+],
+
 };
 
   }
