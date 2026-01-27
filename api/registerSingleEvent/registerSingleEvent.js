@@ -170,17 +170,33 @@ module.exports = async function (context, req) {
   const isCompanion = !!body.primary;
   const registrants = [];
 
-  if (!isCompanion) {
-    registrants.push({
-      ...body,
-      isPrimaryRegistrant: true,
-    });
-  } else {
-    registrants.push({ ...body.primary, isPrimaryRegistrant: true });
-    for (const c of body.companions || []) {
-      registrants.push({ ...c, isPrimaryRegistrant: false });
-    }
+function mapRegistrant(src, isPrimaryRegistrant) {
+  return {
+    firstName: src.firstName,
+    lastName: src.lastName,
+    email: src.email,
+    sex: src.sex,
+
+    jerseySize: src.jerseySize ?? null,
+    shortSize: src.shortSize ?? null,
+    pantSize: null, // not sent by form yet
+    jerseyNumber: src.jerseyNumber ?? null,
+    jerseyName: src.jerseyName ?? null,
+
+    player: src.player ?? {},
+    isPrimaryRegistrant,
+  };
+}
+
+if (!isCompanion) {
+  registrants.push(mapRegistrant(body, true));
+} else {
+  registrants.push(mapRegistrant(body.primary, true));
+  for (const c of body.companions || []) {
+    registrants.push(mapRegistrant(c, false));
   }
+}
+
 
   let pool;
   try {
