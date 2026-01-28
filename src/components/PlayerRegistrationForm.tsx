@@ -240,6 +240,7 @@ companions: [
     player: {
       jerseySize: companion.jerseySize || null,
       shortSize: companion.shortSize || null,
+
       preferredPosition: companion.preferredPosition || null,
       secondaryPosition: companion.secondaryPosition || null,
     },
@@ -308,7 +309,7 @@ const res = await fetch(
       <label>
   <input
     type="radio"
-    name="sex"
+    name="primarySex"
     value="M"
     checked={primary.sex === "M"}
     onChange={handlePrimaryChange}
@@ -440,7 +441,7 @@ const res = await fetch(
        <label>
   <input
     type="radio"
-    name="sex"
+    name="companionSex"
     value="M"
     checked={companion.sex === "M"}
     onChange={handleCompanionChange}
