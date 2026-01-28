@@ -142,7 +142,9 @@ export default function PlayerRegistrationForm({
       return;
     }
 
-    setPrimary((p) => ({ ...p, [name]: value }));
+   const fieldName = name === "primarySex" ? "sex" : name;
+setPrimary((p) => ({ ...p, [fieldName]: value }));
+
   };
 
   const handleCompanionChange = (
@@ -159,7 +161,9 @@ export default function PlayerRegistrationForm({
       return;
     }
 
-    setCompanion((c) => ({ ...c, [name]: value }));
+    const fieldName = name === "companionSex" ? "sex" : name;
+setCompanion((c) => ({ ...c, [fieldName]: value }));
+
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -305,30 +309,30 @@ const res = await fetch(
         <input name="lastName" placeholder="Last Name" value={primary.lastName} onChange={handlePrimaryChange} />
         <input name="email" placeholder="Email" value={primary.email} onChange={handlePrimaryChange} />
 
-        <div className="radio-row">
-      <label>
-  <input
-    type="radio"
-    name="primarySex"
-    value="M"
-    checked={primary.sex === "M"}
-    onChange={handlePrimaryChange}
-  />
-  Male
-</label>
+<div className="radio-row">
+  <label>
+    <input
+      type="radio"
+      name="primarySex"
+      value="M"
+      checked={primary.sex === "M"}
+      onChange={handlePrimaryChange}
+    />
+    Male
+  </label>
 
-<label>
-  <input
-    type="radio"
-    name="sex"
-    value="F"
-    checked={primary.sex === "F"}
-    onChange={handlePrimaryChange}
-  />
-  Female
-</label>
+  <label>
+    <input
+      type="radio"
+      name="primarySex"
+      value="F"
+      checked={primary.sex === "F"}
+      onChange={handlePrimaryChange}
+    />
+    Female
+  </label>
+</div>
 
-        </div>
 
         <h3>Address</h3>
 
@@ -438,29 +442,29 @@ const res = await fetch(
             <input name="email" placeholder="Email" value={companion.email} onChange={handleCompanionChange} />
 
             <div className="radio-row">
-       <label>
-  <input
-    type="radio"
-    name="companionSex"
-    value="M"
-    checked={companion.sex === "M"}
-    onChange={handleCompanionChange}
-  />
-  Male
-</label>
+  <label>
+    <input
+      type="radio"
+      name="companionSex"
+      value="M"
+      checked={companion.sex === "M"}
+      onChange={handleCompanionChange}
+    />
+    Male
+  </label>
 
-<label>
-  <input
-    type="radio"
-    name="sex"
-    value="F"
-    checked={companion.sex === "F"}
-    onChange={handleCompanionChange}
-  />
-  Female
-</label>
+  <label>
+    <input
+      type="radio"
+      name="companionSex"
+      value="F"
+      checked={companion.sex === "F"}
+      onChange={handleCompanionChange}
+    />
+    Female
+  </label>
+</div>
 
-            </div>
 
             <label className="checkbox-row">
               <input
