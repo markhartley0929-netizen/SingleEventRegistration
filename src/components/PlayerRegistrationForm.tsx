@@ -26,17 +26,7 @@ import { getSecondaryPositions } from "../utils/positionRules";
 import { ApparelSize, Gender } from "../constants/apparelSizes";
 import { getVisibleApparelSizes } from "../utils/apparelSizeRules";
 
-/* =========================
-   Accessories
-========================= */
-import { AccessoryType, AccessorySize } from "../constants/accessories";
 
-
-
-
-
-
-const ACCESSORY_SIZES: readonly AccessorySize[] = ["XSM", "SM/MD", "LG/XLG"];
 
 type Address = {
   street: string;
@@ -88,8 +78,6 @@ export default function PlayerRegistrationForm({
     skillLevel: "",
     jerseySize: "" as ApparelSize | "",
     shortSize: "" as ApparelSize | "",
-    accessoryType: "" as AccessoryType | "",
-    accessorySize: "" as AccessorySize | "",
     jerseyNumber: "",
     jerseyName: "",
     preferredPosition: "" as Position | "",
@@ -104,8 +92,6 @@ export default function PlayerRegistrationForm({
     sex: "" as Gender | "",
     jerseySize: "" as ApparelSize | "",
     shortSize: "" as ApparelSize | "",
-    accessoryType: "" as AccessoryType | "",
-    accessorySize: "" as AccessorySize | "",
     jerseyNumber: "",
     jerseyName: "",
     preferredPosition: "" as Position | "",
@@ -213,8 +199,6 @@ const primaryPayload = {
   player: {
     jerseySize: primary.jerseySize || null,
     shortSize: primary.shortSize || null,
-    accessoryType: primary.accessoryType || null,
-    accessorySize: primary.accessorySize || null,
     preferredPosition: primary.preferredPosition || null,
     secondaryPosition: primary.secondaryPosition || null,
     skillLevel: primary.skillLevel || null,
@@ -256,8 +240,6 @@ companions: [
     player: {
       jerseySize: companion.jerseySize || null,
       shortSize: companion.shortSize || null,
-      accessoryType: companion.accessoryType || null,
-      accessorySize: companion.accessorySize || null,
       preferredPosition: companion.preferredPosition || null,
       secondaryPosition: companion.secondaryPosition || null,
     },
@@ -411,40 +393,7 @@ const res = await fetch(
           </select>
         </div>
 
-        <div className="form-row">
-          <div className="radio-row">
-            <label>
-              <input
-                type="radio"
-                name="accessoryType"
-                value="Hat"
-                checked={primary.accessoryType === "Hat"}
-                onChange={handlePrimaryChange}
-              /> Hat
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="accessoryType"
-                value="Headband"
-                checked={primary.accessoryType === "Headband"}
-                onChange={handlePrimaryChange}
-              /> Headband
-            </label>
-          </div>
-
-          <select
-            name="accessorySize"
-            value={primary.accessorySize}
-            onChange={handlePrimaryChange}
-            disabled={!primary.accessoryType}
-          >
-            <option value="">Accessory Size</option>
-            {ACCESSORY_SIZES.map((s) => (
-              <option key={s} value={s}>{s}</option>
-            ))}
-          </select>
-        </div>
+       
 
         <input name="jerseyNumber" placeholder="Jersey Number" value={primary.jerseyNumber} onChange={handlePrimaryChange} />
         <input name="jerseyName" placeholder="Jersey Name" value={primary.jerseyName} onChange={handlePrimaryChange} />
@@ -582,40 +531,7 @@ const res = await fetch(
               </select>
             </div>
 
-            <div className="form-row">
-              <div className="radio-row">
-                <label>
-                  <input
-                    type="radio"
-                    name="accessoryType"
-                    value="Hat"
-                    checked={companion.accessoryType === "Hat"}
-                    onChange={handleCompanionChange}
-                  /> Hat
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="accessoryType"
-                    value="Headband"
-                    checked={companion.accessoryType === "Headband"}
-                    onChange={handleCompanionChange}
-                  /> Headband
-                </label>
-              </div>
-
-              <select
-                name="accessorySize"
-                value={companion.accessorySize}
-                onChange={handleCompanionChange}
-                disabled={!companion.accessoryType}
-              >
-                <option value="">Accessory Size</option>
-                {ACCESSORY_SIZES.map((s) => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
-              </select>
-            </div>
+            
 
             <input name="jerseyNumber" placeholder="Jersey Number" value={companion.jerseyNumber} onChange={handleCompanionChange} />
             <input name="jerseyName" placeholder="Jersey Name" value={companion.jerseyName} onChange={handleCompanionChange} />
