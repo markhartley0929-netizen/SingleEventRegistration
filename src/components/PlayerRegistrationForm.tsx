@@ -251,7 +251,7 @@ setSubmitting(true);
 
 try {
 const res = await fetch(
-  "https://single-event-registration-api-v2-cqd5bferhcbsftda.centralus-01.azurewebsites.net/api/registerSingleEvent",
+  "/api/registerSingleEvent",
   {
     method: "POST",
     headers: {
@@ -260,6 +260,7 @@ const res = await fetch(
     body: JSON.stringify(payload),
   }
 );
+
 
 
 
