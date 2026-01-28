@@ -90,6 +90,7 @@ export default function PlayerRegistrationForm({
     lastName: "",
     email: "",
     sex: "" as Gender | "",
+    skillLevel: "",
     jerseySize: "" as ApparelSize | "",
     shortSize: "" as ApparelSize | "",
     jerseyNumber: "",
@@ -242,6 +243,7 @@ companions: [
         },
 
     player: {
+      skillLevel: companion.skillLevel || null,
       jerseySize: companion.jerseySize || null,
       shortSize: companion.shortSize || null,
 
@@ -519,6 +521,20 @@ const res = await fetch(
                 )}
               </>
             )}
+
+            
+<select
+  name="skillLevel"
+  value={companion.skillLevel}
+  onChange={handleCompanionChange}
+>
+  <option value="">Skill Level</option>
+  <option value="Beginner">Beginner</option>
+  <option value="Intermediate">Intermediate</option>
+  <option value="Advanced">Advanced</option>
+</select>
+
+
 
             <div className="form-row">
               <select name="jerseySize" value={companion.jerseySize} onChange={handleCompanionChange}>
