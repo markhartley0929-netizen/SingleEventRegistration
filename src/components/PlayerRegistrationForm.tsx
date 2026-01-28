@@ -182,10 +182,8 @@ setCompanion((c) => ({ ...c, [fieldName]: value }));
   // REQUIRED: backend expects this
   const organizationId = "d986892d-a116-40b2-98c5-d04e27648817";
 
-const primaryPayload = {
-  eventId,
-  organizationId,
 
+  const primaryPayload = {
   firstName: primary.firstName,
   lastName: primary.lastName,
   email: primary.email,
@@ -202,60 +200,52 @@ const primaryPayload = {
   },
 
   player: {
+    skillLevel: primary.skillLevel || null,
     jerseySize: primary.jerseySize || null,
     shortSize: primary.shortSize || null,
     preferredPosition: primary.preferredPosition || null,
     secondaryPosition: primary.secondaryPosition || null,
-    skillLevel: primary.skillLevel || null,
   },
 };
 
+const companionPayload = {
+  firstName: companion.firstName,
+  lastName: companion.lastName,
+  email: companion.email,
+  sex: companion.sex,
 
+  jerseyNumber: companion.jerseyNumber || null,
+  jerseyName: companion.jerseyName || null,
 
-  let payload: any;
+  address: useSameAddress
+    ? primaryPayload.address
+    : {
+        street: companion.address.street || null,
+        city: companion.address.city || null,
+        state: companion.address.state || null,
+        zip: companion.address.zip || null,
+      },
 
-  if (!registeringWithCompanion) {
-    // SINGLE PLAYER
-    payload = primaryPayload;
-  } else {
-    // PRIMARY + COMPANION
- payload = {
-  eventId, // ✅ REQUIRED BY BACKEND
+  player: {
+    skillLevel: companion.skillLevel || null,
+    jerseySize: companion.jerseySize || null,
+    shortSize: companion.shortSize || null,
+    preferredPosition: companion.preferredPosition || null,
+    secondaryPosition: companion.secondaryPosition || null,
+  },
+};
+
+let payload;
+
+// 🔒 This endpoint is PAIR-ONLY now
+payload = {
   organizationId,
   primary: primaryPayload,
-companions: [
-  {
-    firstName: companion.firstName,
-    lastName: companion.lastName,
-    email: companion.email,
-    sex: companion.sex,
-
-    jerseyNumber: companion.jerseyNumber || null,
-    jerseyName: companion.jerseyName || null,
-
-    address: useSameAddress
-      ? primaryPayload.address
-      : {
-          street: companion.address.street || null,
-          city: companion.address.city || null,
-          state: companion.address.state || null,
-          zip: companion.address.zip || null,
-        },
-
-    player: {
-      skillLevel: companion.skillLevel || null,
-      jerseySize: companion.jerseySize || null,
-      shortSize: companion.shortSize || null,
-
-      preferredPosition: companion.preferredPosition || null,
-      secondaryPosition: companion.secondaryPosition || null,
-    },
-  },
-],
-
+  companion: companionPayload,   // ✅ singular
+  paymentMode: "paypal",
+  paymentStatus: "unpaid",
 };
 
-  }
 
 setSubmitting(true);
 
