@@ -225,12 +225,17 @@ setCompanion((c) => ({ ...c, [fieldName]: value }));
   };
 
 const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setAttemptedSubmit(true);
+e.preventDefault();
 
-  if (!canSubmit) {
-  return;
+// -----------------------------
+// HARD GUARD — NO SIDE EFFECTS
+// -----------------------------
+setAttemptedSubmit(true);
+
+if (!canSubmit) {
+  return; // NOTHING async is allowed past this line
 }
+
 
 
 
