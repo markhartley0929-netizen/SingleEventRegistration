@@ -134,37 +134,37 @@ export default function PlayerRegistrationForm({
     );
   }, [primary, primaryZipError]);
 
-  const isCompanionComplete = useMemo(() => {
-    if (!registeringWithCompanion) return true;
+const isCompanionComplete = useMemo(() => {
+  if (!registeringWithCompanion) return true;
 
-    const addressOk =
-      useSameAddress ||
-      (
-        companion.address.street.trim() &&
-        companion.address.city.trim() &&
-        companion.address.state &&
-        companion.address.zip &&
-        !companionZipError
-      );
-
-    return (
-      companion.firstName.trim() &&
-      companion.lastName.trim() &&
-      companion.email.trim() &&
-      companion.sex &&
-      companion.skillLevel &&
-      companion.jerseySize &&
-      companion.shortSize &&
-      addressOk
+  const addressOk =
+    useSameAddress ||
+    (
+      companion.address.street.trim() &&
+      companion.address.city.trim() &&
+      companion.address.state &&
+      companion.address.zip &&
+      !companionZipError
     );
-  }, [
-    companion,
-    registeringWithCompanion,
-    useSameAddress,
-    companionZipError,
-  ]);
 
-  const canSubmit = isPrimaryComplete && isCompanionComplete && !submitting;
+  return (
+    companion.firstName.trim() &&
+    companion.lastName.trim() &&
+    companion.email.trim() &&
+    companion.sex &&
+    companion.skillLevel &&
+    companion.jerseySize &&
+    companion.shortSize &&
+    addressOk
+  );
+}, [companion, registeringWithCompanion, useSameAddress, companionZipError]);
+
+
+const canSubmit =
+  isPrimaryComplete &&
+  (!registeringWithCompanion || isCompanionComplete) &&
+  !submitting;
+
 
 
 
@@ -299,13 +299,19 @@ const companionPayload = {
 let payload;
 
 // 🔒 This endpoint is PAIR-ONLY now
-payload = {
-  organizationId,
-  primary: primaryPayload,
-  companion: companionPayload,   // ✅ singular
-};
+payload = registeringWithCompanion
+  ? {
+      organizationId,
+      primary: primaryPayload,
+      companion: companionPayload,
+    }
+  : {
+      organizationId,
+      primary: primaryPayload,
+    };
 
 
+0
 setSubmitting(true);
 
 try {
@@ -694,10 +700,11 @@ if (res.ok) {
 <button
   type="submit"
   className="submit-btn"
-  disabled={submitting}
+  disabled={!canSubmit}
 >
-  {submitting ? "Submitting..." : "Register"}
+  Register
 </button>
+
 
 
 
