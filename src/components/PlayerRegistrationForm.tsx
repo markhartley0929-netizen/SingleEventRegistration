@@ -118,21 +118,23 @@ export default function PlayerRegistrationForm({
   // Front-end form guard
   // =========================
   const isPrimaryComplete = useMemo(() => {
-    return (
-      primary.firstName.trim() &&
-      primary.lastName.trim() &&
-      primary.email.trim() &&
-      primary.sex &&
-      primary.skillLevel &&
-      primary.jerseySize &&
-      primary.shortSize &&
-      primary.address.street.trim() &&
-      primary.address.city.trim() &&
-      primary.address.state &&
-      primary.address.zip &&
-      !primaryZipError
-    );
-  }, [primary, primaryZipError]);
+  return (
+    primary.firstName.trim() &&
+    primary.lastName.trim() &&
+    primary.email.trim() &&
+    primary.sex &&
+    primary.skillLevel &&
+    primary.jerseySize &&
+    primary.shortSize &&
+    primary.preferredPosition &&          // ✅ REQUIRED
+    primary.jerseyNumber.trim() &&         // ✅ REQUIRED
+    primary.address.street.trim() &&
+    primary.address.city.trim() &&
+    primary.address.state &&
+    primary.address.zip &&
+    !primaryZipError
+  );
+}, [primary, primaryZipError]);
 
 const isCompanionComplete = useMemo(() => {
   if (!registeringWithCompanion) return true;
@@ -155,9 +157,12 @@ const isCompanionComplete = useMemo(() => {
     companion.skillLevel &&
     companion.jerseySize &&
     companion.shortSize &&
+    companion.preferredPosition &&        // ✅ REQUIRED
+    companion.jerseyNumber.trim() &&       // ✅ REQUIRED
     addressOk
   );
 }, [companion, registeringWithCompanion, useSameAddress, companionZipError]);
+
 
 
 const canSubmit =
