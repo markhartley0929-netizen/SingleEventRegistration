@@ -112,6 +112,61 @@ export default function PlayerRegistrationForm({
     return validateZip(companion.address.zip);
   }, [companion.address.zip, registeringWithCompanion, useSameAddress]);
 
+    // =========================
+  // Front-end form guard
+  // =========================
+  const isPrimaryComplete = useMemo(() => {
+    return (
+      primary.firstName.trim() &&
+      primary.lastName.trim() &&
+      primary.email.trim() &&
+      primary.sex &&
+      primary.skillLevel &&
+      primary.jerseySize &&
+      primary.shortSize &&
+      primary.address.street.trim() &&
+      primary.address.city.trim() &&
+      primary.address.state &&
+      primary.address.zip &&
+      !primaryZipError
+    );
+  }, [primary, primaryZipError]);
+
+  const isCompanionComplete = useMemo(() => {
+    if (!registeringWithCompanion) return true;
+
+    const addressOk =
+      useSameAddress ||
+      (
+        companion.address.street.trim() &&
+        companion.address.city.trim() &&
+        companion.address.state &&
+        companion.address.zip &&
+        !companionZipError
+      );
+
+    return (
+      companion.firstName.trim() &&
+      companion.lastName.trim() &&
+      companion.email.trim() &&
+      companion.sex &&
+      companion.skillLevel &&
+      companion.jerseySize &&
+      companion.shortSize &&
+      addressOk
+    );
+  }, [
+    companion,
+    registeringWithCompanion,
+    useSameAddress,
+    companionZipError,
+  ]);
+
+  const canSubmit = isPrimaryComplete && isCompanionComplete && !submitting;
+
+
+
+
   // If companion registration is turned off, also turn off same-address toggle
   useEffect(() => {
     if (!registeringWithCompanion) {
@@ -574,10 +629,11 @@ const res = await fetch(
        <button
   type="submit"
   className="submit-btn"
-  disabled={submitting}
+  disabled={!canSubmit}
 >
   {submitting ? "Submitting..." : "Register"}
 </button>
+
 
       </form>
     </div>
