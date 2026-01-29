@@ -341,29 +341,27 @@ const res = await fetch(
 if (res.ok) {
   const companionGroupId = data?.companionGroupId;
 
-  if (!companionGroupId) {
-    alert("Registration succeeded but payment could not be started.");
-    return;
-  }
+
 
   // ---------------------------------
   // Create PayPal order
   // ---------------------------------
-  const paypalRes = await fetch("/api/paypalCreateOrder", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      companionGroupId,
-      hasCompanion: true, // PAIR-ONLY invariant
-    }),
-  });
+const paypalRes = await fetch("/api/paypalCreateOrder", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    hasCompanion: registeringWithCompanion,
+  }),
+});
+
 
   const paypalData = await paypalRes.json();
 
   if (!paypalRes.ok || !paypalData?.approvalUrl) {
-    alert("Failed to start PayPal payment. Please try again.");
+alert("Unable to start payment. Your registration was saved — please try again or contact support.");
+
     return;
   }
 
