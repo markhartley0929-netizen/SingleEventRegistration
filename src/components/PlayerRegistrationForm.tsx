@@ -306,8 +306,6 @@ payload = {
   organizationId,
   primary: primaryPayload,
   companion: companionPayload,   // ✅ singular
-  paymentMode: "paypal",
-  paymentStatus: "unpaid",
 };
 
 
@@ -337,10 +335,42 @@ const res = await fetch(
     // backend may return empty body
   }
 
-  if (res.ok) {
-    alert("✅ Registration successful");
+if (res.ok) {
+  const companionGroupId = data?.companionGroupId;
+
+  if (!companionGroupId) {
+    alert("Registration succeeded but payment could not be started.");
     return;
   }
+
+  // ---------------------------------
+  // Create PayPal order
+  // ---------------------------------
+  const paypalRes = await fetch("/api/paypalCreateOrder", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      companionGroupId,
+      hasCompanion: true, // PAIR-ONLY invariant
+    }),
+  });
+
+  const paypalData = await paypalRes.json();
+
+  if (!paypalRes.ok || !paypalData?.approvalUrl) {
+    alert("Failed to start PayPal payment. Please try again.");
+    return;
+  }
+
+  // ---------------------------------
+  // Redirect to PayPal
+  // ---------------------------------
+  window.location.href = paypalData.approvalUrl;
+  return;
+}
+
 
   if (res.status === 409) {
     alert("ℹ️ You are already registered for this event");
