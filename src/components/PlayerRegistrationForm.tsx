@@ -228,6 +228,11 @@ const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   setAttemptedSubmit(true);
 
+  if (!canSubmit) {
+  return;
+}
+
+
 
   const hasZipError =
     !!primaryZipError ||
@@ -659,13 +664,14 @@ const res = await fetch(
 )}
 
 
-       <button
+<button
   type="submit"
   className="submit-btn"
-  disabled={!canSubmit}
+  disabled={submitting}
 >
   {submitting ? "Submitting..." : "Register"}
 </button>
+
 
 
       </form>
