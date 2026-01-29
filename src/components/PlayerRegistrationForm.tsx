@@ -346,12 +346,21 @@ const res = await fetch(
 if (res.ok) {
   const companionGroupId = data?.companionGroupId;
 
-
+  // ---------------------------------
+  // Capture registration IDs from backend response
+  // ---------------------------------
+  const registrationIds: string[] =
+    Array.isArray(data?.registrations)
+      ? data.registrations
+          .map((r: any) => r.registrationId)
+          .filter(Boolean)
+      : [];
 
   // ---------------------------------
   // Create PayPal order
   // ---------------------------------
-const paypalRes = await fetch("/api/paypalCreateOrder", {
+  const paypalRes = await fetch("/api/paypalCreateOrder", {
+
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -362,20 +371,33 @@ const paypalRes = await fetch("/api/paypalCreateOrder", {
 });
 
 
-  const paypalData = await paypalRes.json();
+const paypalData = await paypalRes.json();
 
-  if (!paypalRes.ok || !paypalData?.approvalUrl) {
-alert("Unable to start payment. Your registration was saved — please try again or contact support.");
-
-    return;
-  }
-
-  // ---------------------------------
-  // Redirect to PayPal
-  // ---------------------------------
-  window.location.href = paypalData.approvalUrl;
+if (!paypalRes.ok || !paypalData?.approvalUrl) {
+  alert("Unable to start payment. Your registration was saved — please try again or contact support.");
   return;
 }
+
+// ---------------------------------
+// Attach PayPal orderId to registrations
+// ---------------------------------
+await fetch("/api/attachPayPalOrder", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    orderId: paypalData.orderId,
+    registrationIds,
+  }),
+});
+
+// ---------------------------------
+// Redirect to PayPal
+// ---------------------------------
+window.location.href = paypalData.approvalUrl;
+return;
+
 
 
   if (res.status === 409) {
