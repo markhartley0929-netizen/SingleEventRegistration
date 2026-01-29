@@ -67,6 +67,8 @@ export default function PlayerRegistrationForm({
   const [registeringWithCompanion, setRegisteringWithCompanion] = useState(false);
   const [useSameAddress, setUseSameAddress] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [attemptedSubmit, setAttemptedSubmit] = useState(false);
+
 
 
 
@@ -222,8 +224,10 @@ setCompanion((c) => ({ ...c, [fieldName]: value }));
 
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
+  setAttemptedSubmit(true);
+
 
   const hasZipError =
     !!primaryZipError ||
@@ -352,6 +356,14 @@ const res = await fetch(
         <h1>Slowpitch Softball Registration</h1>
 
         <h2>Primary Player</h2>
+
+        {attemptedSubmit && !isPrimaryComplete && (
+  <div style={{ color: "#c62828", fontSize: 13, marginBottom: 8 }}>
+    All primary player fields are required.
+  </div>
+)}
+
+
 
         <input name="firstName" placeholder="First Name" value={primary.firstName} onChange={handlePrimaryChange} />
         <input name="lastName" placeholder="Last Name" value={primary.lastName} onChange={handlePrimaryChange} />
@@ -484,6 +496,13 @@ const res = await fetch(
         {registeringWithCompanion && (
           <>
             <h2>Companion Player</h2>
+
+            {attemptedSubmit && !isCompanionComplete && (
+  <div style={{ color: "#c62828", fontSize: 13, marginBottom: 8 }}>
+    All companion player fields are required.
+  </div>
+)}
+
 
             <input name="firstName" placeholder="First Name" value={companion.firstName} onChange={handleCompanionChange} />
             <input name="lastName" placeholder="Last Name" value={companion.lastName} onChange={handleCompanionChange} />
@@ -625,6 +644,20 @@ const res = await fetch(
 
           </>
         )}
+
+        {attemptedSubmit && !canSubmit && (
+  <div
+    style={{
+      marginBottom: 12,
+      color: "#c62828",
+      fontSize: 14,
+      fontWeight: 500,
+    }}
+  >
+    Please complete all required fields before registering.
+  </div>
+)}
+
 
        <button
   type="submit"
