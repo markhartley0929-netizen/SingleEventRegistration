@@ -239,14 +239,6 @@ if (!canSubmit) {
 
 
 
-  const hasZipError =
-    !!primaryZipError ||
-    (!!registeringWithCompanion && !useSameAddress && !!companionZipError);
-
-  if (hasZipError) {
-    alert("Please fix the ZIP code before submitting.");
-    return;
-  }
 
   // REQUIRED: backend expects this
   const organizationId = "d986892d-a116-40b2-98c5-d04e27648817";
