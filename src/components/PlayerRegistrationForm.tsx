@@ -317,7 +317,7 @@ payload = registeringWithCompanion
 
 
 0
-setSubmitting(true);
+
 
 try {
 const res = await fetch(
@@ -346,9 +346,6 @@ const res = await fetch(
 if (res.ok) {
   const companionGroupId = data?.companionGroupId;
 
-  // ---------------------------------
-  // Capture registration IDs from backend response
-  // ---------------------------------
   const registrationIds: string[] =
     Array.isArray(data?.registrations)
       ? data.registrations
@@ -356,47 +353,49 @@ if (res.ok) {
           .filter(Boolean)
       : [];
 
-  // ---------------------------------
-  // Create PayPal order
-  // ---------------------------------
   const paypalRes = await fetch("/api/paypalCreateOrder", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      hasCompanion: registeringWithCompanion,
+    }),
+  });
 
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    hasCompanion: registeringWithCompanion,
-  }),
-});
+  const paypalData = await paypalRes.json();
 
+  if (!paypalRes.ok || !paypalData?.approvalUrl) {
+    alert(
+      "Unable to start payment. Your registration was saved — please try again or contact support."
+    );
+    return;
+  }
 
-const paypalData = await paypalRes.json();
+  await fetch("/api/attachpaypalorder", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      orderId: paypalData.orderId,
+      registrationIds,
+    }),
+  });
 
-if (!paypalRes.ok || !paypalData?.approvalUrl) {
-  alert("Unable to start payment. Your registration was saved — please try again or contact support.");
+  window.location.href = paypalData.approvalUrl;
   return;
 }
 
-// ---------------------------------
-// Attach PayPal orderId to registrations
-// ---------------------------------
-await fetch("/api/attachPayPalOrder", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    orderId: paypalData.orderId,
-    registrationIds,
-  }),
-});
+if (res.status === 409) {
+  alert("ℹ️ You are already registered for this event");
+  return;
+}
 
-// ---------------------------------
-// Redirect to PayPal
-// ---------------------------------
-window.location.href = paypalData.approvalUrl;
-return;
+alert(data?.message || "Registration failed");
+
+
+
 
 
 
