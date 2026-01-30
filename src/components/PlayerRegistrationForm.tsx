@@ -782,39 +782,6 @@ alert(data?.message || "Registration failed");
     }}
   />
 </div>
-
-{canSubmit && (
-  <div
-    style={{
-      marginTop: 8,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: 6,
-      fontSize: 12,
-      color: "#666",
-    }}
-  >
-    <span>Secure checkout with</span>
-    <img
-      src={paypalLogo}
-      alt="PayPal"
-      style={{
-          height: 13,
-          opacity: 0.85,
-        display: "block",
-      }}
-    />
-  </div>
-)}
-
-
-
-
-
-
-
-
       </form>
     </div>
   );
