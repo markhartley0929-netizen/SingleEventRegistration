@@ -745,7 +745,7 @@ alert(data?.message || "Registration failed");
   className="submit-btn"
   disabled={!canSubmit}
 >
-  {canSubmit ? "Register" : "Complete form to register"}
+  {canSubmit ? "Register and Pay" : "Complete form to register and Pay"}
 </button>
 
 
