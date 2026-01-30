@@ -315,21 +315,15 @@ payload = registeringWithCompanion
       primary: primaryPayload,
     };
 
-
-0
-
+setSubmitting(true);
 
 try {
-const res = await fetch(
-  "/api/registerSingleEvent",
-  {
+  const res = await fetch("/api/registerSingleEvent", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
-  }
-);
+  });
+
 
 
 
@@ -372,7 +366,7 @@ if (res.ok) {
     return;
   }
 
-  await fetch("/api/attachpaypalorder", {
+await fetch("/api/attachPayPalOrder", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
