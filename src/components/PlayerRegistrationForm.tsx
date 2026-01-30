@@ -757,13 +757,7 @@ alert(data?.message || "Registration failed");
     gap: 6,
   }}
 >
-  <span
-    style={{
-      fontSize: 16,
-      fontWeight: 600,
-      lineHeight: 1.2,
-    }}
-  >
+  <span style={{ fontSize: 16, fontWeight: 600 }}>
     {canSubmit ? "Register & Pay" : "Complete form to register"}
   </span>
 
@@ -777,18 +771,20 @@ alert(data?.message || "Registration failed");
         opacity: 0.9,
       }}
     >
-      <span>Secure checkout with</span>
+      Secure checkout with
       <img
         src={paypalLogo}
         alt="PayPal"
         style={{
           height: 12,
-          display: "block",
+          filter: "grayscale(100%)",
+          opacity: 0.75,
         }}
       />
     </span>
   )}
 </button>
+
 
 
 
