@@ -170,6 +170,12 @@ const canSubmit =
   (!registeringWithCompanion || isCompanionComplete) &&
   !submitting;
 
+  const showIncompleteHint =
+  !canSubmit &&
+  !submitting &&
+  !attemptedSubmit;
+
+
 
 
 
@@ -720,13 +726,28 @@ alert(data?.message || "Registration failed");
 )}
 
 
+{showIncompleteHint && (
+  <div
+    style={{
+      marginBottom: 12,
+      fontSize: 13,
+      color: "#555",
+    }}
+  >
+    Please complete all required fields to enable registration.
+  </div>
+)}
+
+
+
 <button
   type="submit"
   className="submit-btn"
   disabled={!canSubmit}
 >
-  Register
+  {canSubmit ? "Register" : "Complete form to register"}
 </button>
+
 
 
 
