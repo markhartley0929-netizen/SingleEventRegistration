@@ -750,31 +750,46 @@ alert(data?.message || "Registration failed");
   disabled={!canSubmit}
   style={{
     display: "flex",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    gap: 10,
+    padding: "14px 16px",
+    gap: 6,
   }}
 >
-  {canSubmit ? (
-    <>
-      Register & Pay with
-<img
-  src={paypalLogo}
-  alt="PayPal"
-  style={{
-    height: 14,
-    marginLeft: 6,
-    display: "block",
-  }}
-/>
+  <span
+    style={{
+      fontSize: 16,
+      fontWeight: 600,
+      lineHeight: 1.2,
+    }}
+  >
+    {canSubmit ? "Register & Pay" : "Complete form to register"}
+  </span>
 
-
-
-    </>
-  ) : (
-    "Complete form to register"
+  {canSubmit && (
+    <span
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 6,
+        fontSize: 12,
+        opacity: 0.9,
+      }}
+    >
+      <span>Secure checkout with</span>
+      <img
+        src={paypalLogo}
+        alt="PayPal"
+        style={{
+          height: 12,
+          display: "block",
+        }}
+      />
+    </span>
   )}
 </button>
+
 
 
 
