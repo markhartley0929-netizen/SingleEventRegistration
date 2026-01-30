@@ -760,6 +760,29 @@ alert(data?.message || "Registration failed");
   {canSubmit ? "Register & Pay" : "Complete form to register"}
 </button>
 
+<div
+  style={{
+    marginTop: 8,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 6,
+    fontSize: 12,
+    color: canSubmit ? "#666" : "#999",
+    opacity: canSubmit ? 1 : 0.6,
+  }}
+>
+  <span>Secure checkout with</span>
+  <img
+    src={paypalLogo}
+    alt="PayPal"
+    style={{
+      height: 14,
+      display: "block",
+    }}
+  />
+</div>
+
 {canSubmit && (
   <div
     style={{
