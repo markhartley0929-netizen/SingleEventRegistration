@@ -744,9 +744,27 @@ alert(data?.message || "Registration failed");
   type="submit"
   className="submit-btn"
   disabled={!canSubmit}
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+  }}
 >
-  {canSubmit ? "Register and Pay" : "Complete form to register and Pay"}
+  {canSubmit ? (
+    <>
+      Register & Pay with
+      <img
+        src="/paypal-logo.svg"
+        alt="PayPal"
+        style={{ height: 18 }}
+      />
+    </>
+  ) : (
+    "Complete form to register"
+  )}
 </button>
+
 
 
 
