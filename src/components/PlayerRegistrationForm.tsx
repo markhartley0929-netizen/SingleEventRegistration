@@ -235,10 +235,16 @@ e.preventDefault();
 // -----------------------------
 // HARD GUARD — NO SIDE EFFECTS
 // -----------------------------
+if (submitting) {
+  return;
+}
+
 if (!canSubmit) {
   setAttemptedSubmit(true);
   return;
 }
+
+
 
 setSubmitting(true);
 
