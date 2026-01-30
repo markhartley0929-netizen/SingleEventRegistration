@@ -25,7 +25,9 @@ import { getSecondaryPositions } from "../utils/positionRules";
 ========================= */
 import { ApparelSize, Gender } from "../constants/apparelSizes";
 import { getVisibleApparelSizes } from "../utils/apparelSizeRules";
-import paypalLogo from "../assets/paypal-logo.png";
+import paypalLogo from "../assets/paypal-wordmark.svg";
+
+
 
 
 
@@ -759,8 +761,13 @@ alert(data?.message || "Registration failed");
 <img
   src={paypalLogo}
   alt="PayPal"
-  style={{ height: 18 }}
+  style={{
+    height: 14,
+    marginLeft: 6,
+    display: "block",
+  }}
 />
+
 
 
     </>
