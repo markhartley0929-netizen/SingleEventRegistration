@@ -757,10 +757,11 @@ alert(data?.message || "Registration failed");
     <>
       Register & Pay with
 <img
-  src="/paypal-logo.svg"
+  src={paypalLogo}
   alt="PayPal"
   style={{ height: 18 }}
 />
+
 
     </>
   ) : (
