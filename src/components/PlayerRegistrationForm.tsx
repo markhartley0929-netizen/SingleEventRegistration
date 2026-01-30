@@ -235,13 +235,13 @@ e.preventDefault();
 // -----------------------------
 // HARD GUARD — NO SIDE EFFECTS
 // -----------------------------
-setSubmitting(true);
-setAttemptedSubmit(true);
-
 if (!canSubmit) {
-  setSubmitting(false);
-  return; // NOTHING async is allowed past this line
+  setAttemptedSubmit(true);
+  return;
 }
+
+setSubmitting(true);
+
 
 
   // REQUIRED: backend expects this
