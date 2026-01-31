@@ -475,15 +475,7 @@ alert(data?.message || "Registration failed");
   </label>
 </div>
 
-<div
-  style={{
-    fontSize: 12,
-    color: "#666",
-    marginBottom: 12,
-  }}
->
-  Apparel sizes are based on selected gender.
-</div>
+
 
 
 
@@ -538,21 +530,34 @@ alert(data?.message || "Registration failed");
           <option value="Advanced">Advanced</option>
         </select>
 
-        <div className="form-row">
-          <select name="jerseySize" value={primary.jerseySize} onChange={handlePrimaryChange}>
-            <option value="">Jersey Size</option>
-            {getVisibleApparelSizes(primary.sex).map((s) => (
-              <option key={s} value={s}>{s}</option>
-            ))}
-          </select>
+<div className="form-row two">
+  <select name="jerseySize" value={primary.jerseySize} onChange={handlePrimaryChange}>
+    <option value="">Jersey Size</option>
+    {getVisibleApparelSizes(primary.sex).map((s) => (
+      <option key={s} value={s}>{s}</option>
+    ))}
+  </select>
 
-          <select name="shortSize" value={primary.shortSize} onChange={handlePrimaryChange}>
-            <option value="">Short Size</option>
-            {getVisibleApparelSizes(primary.sex).map((s) => (
-              <option key={s} value={s}>{s}</option>
-            ))}
-          </select>
-        </div>
+  <select name="shortSize" value={primary.shortSize} onChange={handlePrimaryChange}>
+    <option value="">Short Size</option>
+    {getVisibleApparelSizes(primary.sex).map((s) => (
+      <option key={s} value={s}>{s}</option>
+    ))}
+  </select>
+</div>
+
+<div
+  style={{
+    fontSize: 12,
+    color: "#666",
+    marginTop: 6,
+    marginBottom: 12,
+  }}
+>
+  Apparel sizes are based on selected gender.
+</div>
+
+
 
        
 
@@ -639,15 +644,7 @@ alert(data?.message || "Registration failed");
   </label>
 </div>
 
-<div
-  style={{
-    fontSize: 12,
-    color: "#666",
-    marginBottom: 12,
-  }}
->
-  Apparel sizes are based on selected gender.
-</div>
+
 
 
 
@@ -719,21 +716,34 @@ alert(data?.message || "Registration failed");
 
 
 
-            <div className="form-row">
-              <select name="jerseySize" value={companion.jerseySize} onChange={handleCompanionChange}>
-                <option value="">Jersey Size</option>
-                {getVisibleApparelSizes(companion.sex).map((s) => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
-              </select>
+<div className="form-row two">
+  <select name="jerseySize" value={companion.jerseySize} onChange={handleCompanionChange}>
+    <option value="">Jersey Size</option>
+    {getVisibleApparelSizes(companion.sex).map((s) => (
+      <option key={s} value={s}>{s}</option>
+    ))}
+  </select>
 
-              <select name="shortSize" value={companion.shortSize} onChange={handleCompanionChange}>
-                <option value="">Short Size</option>
-                {getVisibleApparelSizes(companion.sex).map((s) => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
-              </select>
-            </div>
+  <select name="shortSize" value={companion.shortSize} onChange={handleCompanionChange}>
+    <option value="">Short Size</option>
+    {getVisibleApparelSizes(companion.sex).map((s) => (
+      <option key={s} value={s}>{s}</option>
+    ))}
+  </select>
+</div>
+
+<div
+  style={{
+    fontSize: 12,
+    color: "#666",
+    marginTop: 6,
+    marginBottom: 12,
+  }}
+>
+  Apparel sizes are based on selected gender.
+</div>
+
+
 
             
 
@@ -778,17 +788,7 @@ alert(data?.message || "Registration failed");
 )}
 
 
-{showIncompleteHint && (
-  <div
-    style={{
-      marginBottom: 12,
-      fontSize: 13,
-      color: "#555",
-    }}
-  >
-    Please complete all required fields to enable registration.
-  </div>
-)}
+
 
 
 
@@ -813,16 +813,7 @@ alert(data?.message || "Registration failed");
 
 </button>
 
-<p
-  style={{
-    textAlign: "center",
-    fontSize: 12,
-    color: "#666",
-    marginBottom: 6,
-  }}
->
-  You will review and confirm payment securely via PayPal.
-</p>
+
 
 
 <div
