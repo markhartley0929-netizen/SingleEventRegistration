@@ -121,7 +121,7 @@ export default function PlayerRegistrationForm({
     // =========================
   // Front-end form guard
   // =========================
-  const isPrimaryComplete = useMemo(() => {
+const isPrimaryComplete = useMemo(() => {
   return (
     primary.firstName.trim() &&
     primary.lastName.trim() &&
@@ -130,8 +130,9 @@ export default function PlayerRegistrationForm({
     primary.skillLevel &&
     primary.jerseySize &&
     primary.shortSize &&
-    primary.preferredPosition &&          // ✅ REQUIRED
-    primary.jerseyNumber.trim() &&         // ✅ REQUIRED
+    primary.preferredPosition &&
+    primary.secondaryPosition &&           
+    primary.jerseyNumber.trim() &&
     primary.address.street.trim() &&
     primary.address.city.trim() &&
     primary.address.state &&
@@ -139,6 +140,7 @@ export default function PlayerRegistrationForm({
     !primaryZipError
   );
 }, [primary, primaryZipError]);
+
 
 const isCompanionComplete = useMemo(() => {
   if (!registeringWithCompanion) return true;
@@ -161,11 +163,13 @@ const isCompanionComplete = useMemo(() => {
     companion.skillLevel &&
     companion.jerseySize &&
     companion.shortSize &&
-    companion.preferredPosition &&        // ✅ REQUIRED
-    companion.jerseyNumber.trim() &&       // ✅ REQUIRED
+    companion.preferredPosition &&
+    companion.secondaryPosition &&        
+    companion.jerseyNumber.trim() &&
     addressOk
   );
 }, [companion, registeringWithCompanion, useSameAddress, companionZipError]);
+
 
 
 
@@ -809,7 +813,7 @@ alert(data?.message || "Registration failed");
   ? "Processing..."
   : canSubmit
     ? "Register & Proceed to Payment"
-    : "Complete form to register"}
+    : "Complete form to register & Pay"}
 
 </button>
 
