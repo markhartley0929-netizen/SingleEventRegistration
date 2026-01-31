@@ -424,9 +424,13 @@ alert(data?.message || "Registration failed");
   return (
     <div className="register-page">
       <form className="register-card" onSubmit={handleSubmit}>
-        <h1>Slowpitch Softball Registration</h1>
+       <h1>Memorial Day Draft Registration</h1>
+<p className="form-subtitle">
+  Register below to secure your spot in the Memorial Day Draft Event
+</p>
 
-        <h2>Primary Player</h2>
+<div className="form-section">
+  <h2>Primary Player</h2>
 
         {attemptedSubmit && !isPrimaryComplete && (
   <div style={{ color: "#c62828", fontSize: 13, marginBottom: 8 }}>
@@ -438,7 +442,14 @@ alert(data?.message || "Registration failed");
 
         <input name="firstName" placeholder="First Name" value={primary.firstName} onChange={handlePrimaryChange} />
         <input name="lastName" placeholder="Last Name" value={primary.lastName} onChange={handlePrimaryChange} />
-        <input name="email" placeholder="Email" value={primary.email} onChange={handlePrimaryChange} />
+        <input
+  type="email"
+  name="email"
+  placeholder="Email"
+  value={primary.email}
+  onChange={handlePrimaryChange}
+/>
+
 
 <div className="radio-row">
   <label>
@@ -463,6 +474,19 @@ alert(data?.message || "Registration failed");
     Female
   </label>
 </div>
+
+<div
+  style={{
+    fontSize: 12,
+    color: "#666",
+    marginBottom: 12,
+  }}
+>
+  Apparel sizes are based on selected gender.
+</div>
+
+
+
 
 
         <h3>Address</h3>
@@ -494,7 +518,8 @@ alert(data?.message || "Registration failed");
 
           <input
             name="address.zip"
-            placeholder="Zip Code"
+            placeholder="Zip Code (5 digits)"
+
             value={primary.address.zip}
             onChange={handlePrimaryChange}
           />
@@ -554,6 +579,7 @@ alert(data?.message || "Registration failed");
     ))}
 </select>
 
+</div>
 
         <label className="checkbox-row">
           <input
@@ -561,12 +587,15 @@ alert(data?.message || "Registration failed");
             checked={registeringWithCompanion}
             onChange={(e) => setRegisteringWithCompanion(e.target.checked)}
           />
-          Registering with a companion player
+          Registering with a companion player (you will be drafted onto the same team)
+
         </label>
 
-        {registeringWithCompanion && (
-          <>
-            <h2>Companion Player</h2>
+      {registeringWithCompanion && (
+  <div className="form-section">
+    <h2>Companion Player</h2>
+
+
 
             {attemptedSubmit && !isCompanionComplete && (
   <div style={{ color: "#c62828", fontSize: 13, marginBottom: 8 }}>
@@ -577,7 +606,14 @@ alert(data?.message || "Registration failed");
 
             <input name="firstName" placeholder="First Name" value={companion.firstName} onChange={handleCompanionChange} />
             <input name="lastName" placeholder="Last Name" value={companion.lastName} onChange={handleCompanionChange} />
-            <input name="email" placeholder="Email" value={companion.email} onChange={handleCompanionChange} />
+            <input
+  type="email"
+  name="email"
+  placeholder="Email"
+  value={companion.email}
+  onChange={handleCompanionChange}
+/>
+
 
             <div className="radio-row">
   <label>
@@ -602,6 +638,17 @@ alert(data?.message || "Registration failed");
     Female
   </label>
 </div>
+
+<div
+  style={{
+    fontSize: 12,
+    color: "#666",
+    marginBottom: 12,
+  }}
+>
+  Apparel sizes are based on selected gender.
+</div>
+
 
 
             <label className="checkbox-row">
@@ -644,7 +691,7 @@ alert(data?.message || "Registration failed");
 
                   <input
                     name="address.zip"
-                    placeholder="Zip Code"
+                 placeholder="Zip Code (5 digits)"
                     value={companion.address.zip}
                     onChange={handleCompanionChange}
                   />
@@ -700,7 +747,7 @@ alert(data?.message || "Registration failed");
               ))}
             </select>
 
-     <select
+<select
   name="secondaryPosition"
   value={companion.secondaryPosition}
   onChange={handleCompanionChange}
@@ -713,8 +760,9 @@ alert(data?.message || "Registration failed");
     ))}
 </select>
 
-          </>
-        )}
+  </div>
+)}
+
 
         {attemptedSubmit && !canSubmit && (
   <div
@@ -757,8 +805,25 @@ alert(data?.message || "Registration failed");
     fontWeight: 600,
   }}
 >
-  {canSubmit ? "Register & Pay" : "Complete form to register"}
+{submitting
+  ? "Processing..."
+  : canSubmit
+    ? "Register & Proceed to Payment"
+    : "Complete form to register"}
+
 </button>
+
+<p
+  style={{
+    textAlign: "center",
+    fontSize: 12,
+    color: "#666",
+    marginBottom: 6,
+  }}
+>
+  You will review and confirm payment securely via PayPal.
+</p>
+
 
 <div
   style={{
