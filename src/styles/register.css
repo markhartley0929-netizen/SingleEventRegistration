@@ -238,3 +238,26 @@
 .register-card .form-row.two {
   grid-template-columns: 1fr 1fr;
 }
+
+.form-section {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 22px 20px;
+  margin-bottom: 26px;
+}
+
+/* Section headers */
+.form-section > h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #111827;
+}
+
+.form-section > h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 18px 0 10px;
+  color: #374151;
+}
