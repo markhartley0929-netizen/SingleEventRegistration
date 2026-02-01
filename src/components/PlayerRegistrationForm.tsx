@@ -8,6 +8,8 @@
 
 
 import React, { useEffect, useMemo, useState } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+
 
 import "../styles/register.css";
 
@@ -67,6 +69,8 @@ type PlayerRegistrationFormProps = {
 export default function PlayerRegistrationForm({
   eventId,
 }: PlayerRegistrationFormProps) {
+
+    const { executeRecaptcha } = useGoogleReCaptcha();
 
   const [registeringWithCompanion, setRegisteringWithCompanion] = useState(false);
   const [useSameAddress, setUseSameAddress] = useState(false);
@@ -258,6 +262,12 @@ if (!canSubmit) {
   return;
 }
 
+if (!executeRecaptcha) {
+  alert("Captcha not ready. Please refresh the page.");
+  return;
+}
+
+const captchaToken = await executeRecaptcha("register_single_event");
 
 
 setSubmitting(true);
@@ -328,11 +338,14 @@ payload = registeringWithCompanion
       organizationId,
       primary: primaryPayload,
       companion: companionPayload,
+      captchaToken,
     }
   : {
       organizationId,
       primary: primaryPayload,
+      captchaToken,
     };
+
 
 setSubmitting(true);
 
