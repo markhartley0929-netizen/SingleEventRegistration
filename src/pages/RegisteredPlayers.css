@@ -117,3 +117,21 @@ td:nth-child(6) {
 .skill.advanced::before {
   color: #f87171;
 }
+
+/* Call-to-action link */
+.cta {
+  margin-top: 24px;
+  opacity: 0.9;
+}
+
+.cta a {
+  color: #38bdf8; /* electric blue */
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease, text-shadow 0.15s ease;
+}
+
+.cta a:hover {
+  color: #7dd3fc;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+}

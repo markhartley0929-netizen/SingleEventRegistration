@@ -106,10 +106,11 @@ export default function RegisteredPlayers() {
         </tbody>
       </table>
       </div>
-      <p style={{ marginTop: "20px", opacity: 0.8 }}>
+   <p className="cta">
   Don’t see your name?{" "}
   <a href="/register">Register here →</a>
 </p>
+
 
     </div>
 
