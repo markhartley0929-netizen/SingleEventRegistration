@@ -212,13 +212,7 @@ const isCompanionComplete = useMemo(() => {
 }, [companion, registeringWithCompanion, useSameAddress, companionZipError]);
 
 
-useEffect(() => {
-  console.log(
-    "[reCAPTCHA]",
-    "ready =", captchaReady,
-    "grecaptcha =", !!(window as any).grecaptcha
-  );
-}, [captchaReady]);
+
 
 
 const canSubmit =
@@ -307,30 +301,27 @@ const handleSubmit = async (e: React.FormEvent) => {
     return;
   }
 
-  if (!(window as any).grecaptcha) {
-    alert("Captcha not ready yet. Please wait a moment.");
-    return;
-  }
 
-  let captchaToken: string;
+if (!captchaReady || !(window as any).grecaptcha) {
+  alert("Captcha is still initializing. Please wait 1 second and try again.");
+  return;
+}
 
-  try {
-    captchaToken = await new Promise<string>((resolve, reject) => {
-      (window as any).grecaptcha.ready(() => {
-        (window as any).grecaptcha
-          .execute(RECAPTCHA_SITE_KEY, {
-            action: "register_single_event",
-          })
-          .then(resolve)
-          .catch(reject);
-      });
-    });
-  } catch {
-    alert("Captcha failed to initialize. Please refresh the page.");
-    return;
-  }
+let captchaToken: string;
 
-  setSubmitting(true);
+try {
+  captchaToken = await (window as any).grecaptcha.execute(
+    RECAPTCHA_SITE_KEY,
+    { action: "register_single_event" }
+  );
+} catch (err) {
+  console.error("reCAPTCHA execute failed", err);
+  alert("Captcha failed to run. Please refresh the page.");
+  return;
+}
+
+setSubmitting(true);
+
 
 
 
