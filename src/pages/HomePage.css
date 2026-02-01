@@ -121,3 +121,29 @@ h1 {
   color: black;
 }
 
+.player-counter {
+  margin: 20px auto;
+  padding: 16px;
+  max-width: 360px;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.player-counter hr {
+  margin: 10px 0;
+  border-color: #222;
+}
+
+.full-warning {
+  color: #ff4d4d;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.btn.disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+

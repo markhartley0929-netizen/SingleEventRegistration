@@ -15,7 +15,7 @@ export default function HomePage() {
 
         {/* EVENT DATES */}
         <p className="event-dates">
-          May 24–26, 2026
+          May 23–24, 2026
         </p>
 
         <p className="subhead">
