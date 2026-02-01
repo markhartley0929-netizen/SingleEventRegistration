@@ -453,12 +453,13 @@ return (
   <div className="register-page">
     {/* Logo header */}
     <div className="register-header">
-  <img
+<img
   src="/wickdwear-logo.png"
   alt="WickdWear"
   className="register-logo"
   onClick={() => (window.location.href = "/")}
 />
+
 
     </div>
 

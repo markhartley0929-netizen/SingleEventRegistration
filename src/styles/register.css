@@ -15,17 +15,12 @@
    Logo header
 ========================= */
 
-.register-header {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 36px;
-}
-
 .register-logo {
-  height: 96px; /* 🔥 larger logo */
+  height: 96px;
+  margin-bottom: 36px; /* spacing before form */
   cursor: pointer;
 }
+
 
 /* =========================
    Card (dark)
