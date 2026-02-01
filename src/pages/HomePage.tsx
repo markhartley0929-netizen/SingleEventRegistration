@@ -9,14 +9,12 @@ type RegistrationCounts = {
 };
 
 export default function HomePage() {
-  // 🔴 Event ID
   const EVENT_ID = "b04de545-5aee-4403-86b1-03db1e5c4a86";
 
   // Caps
   const WOMEN_CAP = 56;
   const MEN_CAP = 112;
   const TOTAL_CAP = 168;
-  const TEAM_CAP = 14;
   const PLAYERS_PER_TEAM = 12;
 
   // Pricing
@@ -32,15 +30,11 @@ export default function HomePage() {
   useEffect(() => {
     fetch(`/api/getRegistrationCounts?eventId=${EVENT_ID}`)
       .then((res) => res.json())
-      .then((data: RegistrationCounts) => {
-        setCounts(data);
-      })
-      .catch((err) => {
-        console.error("Failed to load registration counts", err);
-      });
+      .then((data: RegistrationCounts) => setCounts(data))
+      .catch((err) =>
+        console.error("Failed to load registration counts", err)
+      );
   }, []);
-
-  const teamsFilled = Math.floor(counts.total / PLAYERS_PER_TEAM);
 
   const isEventFull =
     counts.total >= TOTAL_CAP ||
@@ -50,49 +44,36 @@ export default function HomePage() {
   return (
     <div className="home">
       <header className="hero">
-        <img
-          src="/wickdwear-logo.png"
-          alt="WickdWear"
-          className="logo"
-        />
+        <img src="/wickdwear-logo.png" alt="WickdWear" className="logo" />
 
         <h1>Memorial Day Draft Tournament</h1>
-
         <p className="event-dates">May 23–24, 2026</p>
+        <p className="subhead">Slowpitch Softball • Draft Format</p>
 
-        <p className="subhead">
-          Slowpitch Softball • Draft Format
-        </p>
-
-        {/* ENTRY / PRICING */}
-        <div className="tournament-details">
-          <h3>💰 Entry & Details</h3>
+        {/* ENTRY & DETAILS (NO CARD) */}
+        <div className="section">
+          <h3>🪙 Entry & Details</h3>
 
           <p>
             <strong>Entry Fee:</strong> ${ENTRY_FEE}
           </p>
 
           <p className="highlight">
-            🔥 <strong>10% Early Bird Discount</strong> until{" "}
-            {EARLY_BIRD_DEADLINE}
+            🔥 10% Early Bird Discount until {EARLY_BIRD_DEADLINE}
           </p>
 
           <p>
             <strong>🎮 Game Guarantee:</strong> 5 Games Guaranteed
           </p>
 
-          <div className="apparel">
-            <h4>👕 WCKD Wear Apparel Package</h4>
-            <ul>
-              <li>2 Jerseys</li>
-              <li>2 Shorts</li>
-              <li>1 Hat</li>
-            </ul>
-          </div>
+          <p>
+            <strong>👕 WCKD Wear Apparel Package:</strong>
+          </p>
+          <p>2 Jerseys • 2 Shorts • 1 Hat</p>
         </div>
 
         {/* PRIZE PACKAGE */}
-        <div className="prizes">
+        <div className="section">
           <h3>🏆 Prize Package</h3>
           <p><strong>1st Place:</strong> 12 WCKD Bats</p>
           <p><strong>2nd Place:</strong> 12 WCKD Softball Bags</p>
@@ -100,7 +81,7 @@ export default function HomePage() {
         </div>
 
         {/* LOCATION */}
-        <div className="location">
+        <div className="section">
           <p><strong>📍 Lake Fairview Softball Complex</strong></p>
           <p>
             2200 Lee Rd<br />
@@ -117,7 +98,7 @@ export default function HomePage() {
           </a>
         </div>
 
-        {/* PLAYER COUNTER */}
+        {/* PLAYER COUNTER (ONLY CARD ON PAGE) */}
         <div className="player-counter">
           <h3>👥 14 Team / 168 Player Cap</h3>
 
@@ -141,10 +122,6 @@ export default function HomePage() {
 
         {/* ACTIONS */}
         <div className="actions">
-          <p className="early-bird-callout">
-            🔥 Save 10% — Early Bird Pricing Ends {EARLY_BIRD_DEADLINE}
-          </p>
-
           {!isEventFull ? (
             <Link to="/register" className="btn primary">
               Register Now
