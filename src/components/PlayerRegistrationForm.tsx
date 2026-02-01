@@ -81,30 +81,7 @@ export default function PlayerRegistrationForm({
   const [submitting, setSubmitting] = useState(false);
   const [attemptedSubmit, setAttemptedSubmit] = useState(false);
 
-const [captchaReady, setCaptchaReady] = useState(false);
 
-useEffect(() => {
-  // 🔥 HARD RESET: remove any existing reCAPTCHA scripts/clients
-  document
-    .querySelectorAll('script[src*="recaptcha"]')
-    .forEach((s) => s.remove());
-
-  delete (window as any).grecaptcha;
-
-  // ✅ Load v3 with an explicit site key bound via render=
-  const script = document.createElement("script");
-  script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
-  script.async = true;
-  script.defer = true;
-
-  script.onload = () => {
-    (window as any).grecaptcha.ready(() => {
-      setCaptchaReady(true);
-    });
-  };
-
-  document.head.appendChild(script);
-}, []);
 
 
 
@@ -211,10 +188,10 @@ const isCompanionComplete = useMemo(() => {
 
 
 const canSubmit =
-  captchaReady &&
   isPrimaryComplete &&
   (!registeringWithCompanion || isCompanionComplete) &&
   !submitting;
+
 
 
 
@@ -297,10 +274,6 @@ const handleSubmit = async (e: React.FormEvent) => {
   }
 
 
-if (!captchaReady || !(window as any).grecaptcha) {
-  alert("Captcha still loading. Please wait one second and try again.");
-  return;
-}
 
 let captchaToken: string;
 
