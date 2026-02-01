@@ -84,8 +84,16 @@ export default function PlayerRegistrationForm({
 const [captchaReady, setCaptchaReady] = useState(false);
 
 useEffect(() => {
+  // If grecaptcha already exists, just wait for readiness
   if ((window as any).grecaptcha) {
-    setCaptchaReady(true);
+    (window as any).grecaptcha.ready(() => {
+      setCaptchaReady(true);
+    });
+    return;
+  }
+
+  // Prevent duplicate script injection (React 18 StrictMode safe)
+  if (document.querySelector("script[data-recaptcha]")) {
     return;
   }
 
@@ -93,6 +101,7 @@ useEffect(() => {
   script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
   script.async = true;
   script.defer = true;
+  script.setAttribute("data-recaptcha", "true");
 
   script.onload = () => {
     (window as any).grecaptcha.ready(() => {
@@ -102,6 +111,8 @@ useEffect(() => {
 
   document.head.appendChild(script);
 }, []);
+
+
 
 
 
@@ -201,6 +212,13 @@ const isCompanionComplete = useMemo(() => {
 }, [companion, registeringWithCompanion, useSameAddress, companionZipError]);
 
 
+useEffect(() => {
+  console.log(
+    "[reCAPTCHA]",
+    "ready =", captchaReady,
+    "grecaptcha =", !!(window as any).grecaptcha
+  );
+}, [captchaReady]);
 
 
 const canSubmit =
