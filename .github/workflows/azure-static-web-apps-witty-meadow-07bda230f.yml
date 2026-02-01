@@ -10,20 +10,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: "18"
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Vite app
-        run: npm run build
+      # 🔍 HARD PROOF — DOES THE BUILD SEE THE KEY?
+      - name: DEBUG reCAPTCHA env
         env:
           VITE_RECAPTCHA_SITE_KEY: ${{ secrets.VITE_RECAPTCHA_SITE_KEY }}
+        run: |
+          echo "---- reCAPTCHA ENV DEBUG ----"
+          echo "Key length: ${#VITE_RECAPTCHA_SITE_KEY}"
+          echo "Key prefix: ${VITE_RECAPTCHA_SITE_KEY:0:6}"
+          echo "-----------------------------"
 
+      # 🧱 ACTUAL BUILD
+      - name: Build Vite app
+        env:
+          VITE_RECAPTCHA_SITE_KEY: ${{ secrets.VITE_RECAPTCHA_SITE_KEY }}
+        run: npm run build
+
+      # 🚀 DEPLOY
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
