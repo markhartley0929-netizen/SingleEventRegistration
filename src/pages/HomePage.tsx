@@ -92,7 +92,7 @@ export default function HomePage() {
         
         {/* PLAYER COUNTER */}
         <div className="player-counter">
-          <h3>👥 Player Registration</h3>
+          <h3>👥 14 Team / 168 player cap</h3>
 
           <p>
             Women: <strong>{counts.women}</strong> / {WOMEN_CAP}
@@ -107,9 +107,7 @@ export default function HomePage() {
             <strong>Total Players:</strong> {counts.total} / {TOTAL_CAP}
           </p>
 
-          <p>
-            <strong>Teams Filled:</strong> {teamsFilled} / {TEAM_CAP}
-          </p>
+       
 
           {isEventFull && (
             <p className="full-warning">🚫 Event is Full</p>
