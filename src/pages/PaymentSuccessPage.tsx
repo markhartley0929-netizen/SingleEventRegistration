@@ -97,7 +97,7 @@ export default function PaymentSuccessPage() {
         <p>You are officially registered for the event.</p>
 
         <div className="payment-actions">
-          <Link to="/registered" className="primary-link">
+          <Link to="/registrations" className="primary-link">
             View Registered Players
           </Link>
 
