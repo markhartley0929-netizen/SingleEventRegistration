@@ -73,14 +73,27 @@ export default function PlayerRegistrationForm({
   eventId,
 }: PlayerRegistrationFormProps) {
 
-  
-  
+  // =========================
+  // reCAPTCHA v3 loader (ONLY ONE)
+  // =========================
+  useEffect(() => {
+    if ((window as any).grecaptcha) return;
+
+    const script = document.createElement("script");
+    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+    script.async = true;
+    script.defer = true;
+
+    document.head.appendChild(script);
+  }, []);
 
   const [registeringWithCompanion, setRegisteringWithCompanion] = useState(false);
   const [useSameAddress, setUseSameAddress] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [attemptedSubmit, setAttemptedSubmit] = useState(false);
 
+
+  
 
 
 
