@@ -66,13 +66,13 @@ export default function HomePage() {
             </p>
 
             <p>
-              <strong>🎮 Game Guarantee:</strong> 5 Games Guaranteed
+              <strong>5 Game Guarantee</strong>
             </p>
 
             <p>
-              <strong>👕 WCKD Wear Apparel Package:</strong>
+              <strong>👕 WICKD Wear Apparel Package:</strong>
             </p>
-            <p>2 Jerseys • 2 Shorts • 1 Hat</p>
+            <p>2 Jerseys • 1 pair of Shorts • 1 Hat</p>
           </div>
 
           {/* PRIZE PACKAGE */}
@@ -103,7 +103,7 @@ export default function HomePage() {
 
         </div>
 
-        {/* PLAYER COUNTER (ONLY CARD ON PAGE) */}
+        {/* PLAYER COUNTER */}
         <div className="player-counter">
           <h3>👥 14 Team / 168 Player Cap</h3>
 
