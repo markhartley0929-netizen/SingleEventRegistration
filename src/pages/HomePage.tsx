@@ -9,7 +9,7 @@ type RegistrationCounts = {
 };
 
 export default function HomePage() {
-  // 🔴 REQUIRED: replace with your real EventID
+  // 🔴 Event ID
   const EVENT_ID = "b04de545-5aee-4403-86b1-03db1e5c4a86";
 
   // Caps
@@ -18,6 +18,10 @@ export default function HomePage() {
   const TOTAL_CAP = 168;
   const TEAM_CAP = 14;
   const PLAYERS_PER_TEAM = 12;
+
+  // Pricing
+  const ENTRY_FEE = 150;
+  const EARLY_BIRD_DEADLINE = "March 1st, 2026";
 
   const [counts, setCounts] = useState<RegistrationCounts>({
     women: 0,
@@ -54,20 +58,44 @@ export default function HomePage() {
 
         <h1>Memorial Day Draft Tournament</h1>
 
-        <p className="event-dates">
-          May 23–24, 2026
-        </p>
+        <p className="event-dates">May 23–24, 2026</p>
 
         <p className="subhead">
           Slowpitch Softball • Draft Format
         </p>
 
+        {/* ENTRY / PRICING */}
+        <div className="tournament-details">
+          <h3>💰 Entry & Details</h3>
+
+          <p>
+            <strong>Entry Fee:</strong> ${ENTRY_FEE}
+          </p>
+
+          <p className="highlight">
+            🔥 <strong>10% Early Bird Discount</strong> until{" "}
+            {EARLY_BIRD_DEADLINE}
+          </p>
+
+          <p>
+            <strong>🎮 Game Guarantee:</strong> 5 Games Guaranteed
+          </p>
+
+          <div className="apparel">
+            <h4>👕 WCKD Wear Apparel Package</h4>
+            <ul>
+              <li>2 Jerseys</li>
+              <li>2 Shorts</li>
+              <li>1 Hat</li>
+            </ul>
+          </div>
+        </div>
 
         {/* PRIZE PACKAGE */}
         <div className="prizes">
           <h3>🏆 Prize Package</h3>
-          <p><strong>1st Place:</strong> 12 Bats</p>
-          <p><strong>2nd Place:</strong> 12 Softball Bags</p>
+          <p><strong>1st Place:</strong> 12 WCKD Bats</p>
+          <p><strong>2nd Place:</strong> 12 WCKD Softball Bags</p>
           <p><strong>3rd Place:</strong> TBD</p>
         </div>
 
@@ -89,10 +117,9 @@ export default function HomePage() {
           </a>
         </div>
 
-        
         {/* PLAYER COUNTER */}
         <div className="player-counter">
-          <h3>👥 14 Team / 168 player cap</h3>
+          <h3>👥 14 Team / 168 Player Cap</h3>
 
           <p>
             Women: <strong>{counts.women}</strong> / {WOMEN_CAP}
@@ -107,8 +134,6 @@ export default function HomePage() {
             <strong>Total Players:</strong> {counts.total} / {TOTAL_CAP}
           </p>
 
-       
-
           {isEventFull && (
             <p className="full-warning">🚫 Event is Full</p>
           )}
@@ -116,6 +141,10 @@ export default function HomePage() {
 
         {/* ACTIONS */}
         <div className="actions">
+          <p className="early-bird-callout">
+            🔥 Save 10% — Early Bird Pricing Ends {EARLY_BIRD_DEADLINE}
+          </p>
+
           {!isEventFull ? (
             <Link to="/register" className="btn primary">
               Register Now

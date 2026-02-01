@@ -197,3 +197,27 @@ h1 {
   cursor: not-allowed;
 }
 
+.tournament-details {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+}
+
+.tournament-details .highlight {
+  color: #ff5252;
+  font-weight: 600;
+}
+
+.tournament-details ul {
+  margin-top: 0.5rem;
+  padding-left: 1.2rem;
+}
+
+.early-bird-callout {
+  margin-bottom: 0.75rem;
+  color: #ff5252;
+  font-weight: 600;
+  text-align: center;
+}
+
