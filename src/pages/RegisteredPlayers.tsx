@@ -67,6 +67,10 @@ export default function RegisteredPlayers() {
   return (
     <div className="registered-page">
       <h1>Registered Players</h1>
+      <p style={{ opacity: 0.7, marginBottom: "16px" }}>
+  Roster updates as players register
+</p>
+
 
       <div className="table-wrapper">
   <table>
@@ -83,18 +87,33 @@ export default function RegisteredPlayers() {
 
         <tbody>
           {players.map((p, i) => (
-            <tr key={i}>
+            <tr key={i} className={p.role === "Companion" ? "companion-row" : ""}>
+
               <td>{p.firstName}</td>
-              <td>{p.lastName}</td>
+             <td><strong>{p.lastName}</strong></td>
+
               <td>{p.primaryPosition || "-"}</td>
               <td>{p.secondaryPosition || "-"}</td>
               <td>{p.role}</td>
-              <td>{p.skillLevel || "-"}</td>
+             <td>
+  <span className={`skill ${p.skillLevel?.toLowerCase() || ""}`}>
+    {p.skillLevel || "-"}
+  </span>
+</td>
+
             </tr>
           ))}
         </tbody>
       </table>
       </div>
+      <p style={{ marginTop: "20px", opacity: 0.8 }}>
+  Don’t see your name?{" "}
+  <a href="/register">Register here →</a>
+</p>
+
     </div>
+
+
+
   );
 }

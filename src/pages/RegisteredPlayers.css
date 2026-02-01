@@ -45,7 +45,12 @@ th {
   font-weight: 600;
   color: #ddd;
   white-space: nowrap;
+  position: sticky;
+  top: 0;
+  background: #141414;
+  z-index: 2;
 }
+
 
 /* Rows */
 tbody tr {
@@ -73,4 +78,42 @@ td {
   margin-top: 40px;
   font-size: 1.1rem;
   color: #aaa;
+}
+
+.companion-row td:first-child {
+  padding-left: 28px;
+  opacity: 0.85;
+}
+
+td strong {
+  letter-spacing: 0.3px;
+}
+
+td:nth-child(5),
+td:nth-child(6) {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.skill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.skill::before {
+  content: "●";
+}
+
+.skill.beginner::before {
+  color: #4ade80;
+}
+
+.skill.intermediate::before {
+  color: #facc15;
+}
+
+.skill.advanced::before {
+  color: #f87171;
 }
