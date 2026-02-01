@@ -278,15 +278,20 @@ const handleSubmit = async (e: React.FormEvent) => {
 let captchaToken: string;
 
 try {
-  captchaToken = await (window as any).grecaptcha.execute(
-    RECAPTCHA_SITE_KEY,
-    { action: "register_single_event" }
-  );
+  captchaToken = await new Promise<string>((resolve, reject) => {
+    (window as any).grecaptcha.ready(() => {
+      (window as any).grecaptcha
+        .execute(RECAPTCHA_SITE_KEY, { action: "register_single_event" })
+        .then(resolve)
+        .catch(reject);
+    });
+  });
 } catch (err) {
   console.error("reCAPTCHA execute failed", err);
   alert("Captcha failed to run. Please hard refresh and try again.");
   return;
 }
+
 
 setSubmitting(true);
 
