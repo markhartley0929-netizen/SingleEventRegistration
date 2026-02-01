@@ -133,7 +133,21 @@ h1 {
   border-radius: 10px;
 
   text-align: center;
+
+  /* 🔑 critical fix */
+  pointer-events: none;
 }
+
+.actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+
+  /* 🔑 critical fix */
+  position: relative;
+  z-index: 5;
+}
+
 
 .counter-title {
   font-size: 0.95rem;
