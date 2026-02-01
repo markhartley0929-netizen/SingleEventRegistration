@@ -16,7 +16,9 @@ export default function RegisteredPlayers() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`/api/registrations?eventId=b04de545-5aee-4403-86b1-03db1e5c4a86`)
+   fetch(
+  `https://single-event-registration-api-v2-cqd5bferhcbsftda.centralus-01.azurewebsites.net/api/getregistrations?eventId=${EVENT_ID}`
+)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to load registrations");
         return res.json();
