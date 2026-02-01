@@ -1,6 +1,93 @@
+/* Page Layout */
 .registered-page {
   min-height: 100vh;
-  background: black;
-  color: white;
-  padding: 40px;
+  background: radial-gradient(circle at top, #0a0a0a, #000);
+  color: #f5f5f5;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Title */
+.registered-page h1 {
+  font-size: 2.4rem;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Table Container */
+.table-wrapper {
+  width: 100%;
+  max-width: 900px;
+  background: #0f0f0f;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  overflow-x: auto;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+/* Header */
+thead {
+  background: #141414;
+}
+
+th {
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 600;
+  color: #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+/* Rows */
+tbody tr {
+  transition: background 0.15s ease;
+}
+
+tbody tr:nth-child(even) {
+  background: #121212;
+}
+
+tbody tr:hover {
+  background: #1f1f1f;
+}
+
+/* Cells */
+td {
+  padding: 10px 14px;
+  color: #eaeaea;
+  white-space: nowrap;
+}
+
+/* Role badges */
+td:nth-child(5) {
+  font-weight: 600;
+}
+
+td:nth-child(5):contains("Primary") {
+  color: #4ade80;
+}
+
+td:nth-child(5):contains("Companion") {
+  color: #60a5fa;
+}
+
+/* Loading & Error */
+.loading,
+.error {
+  margin-top: 40px;
+  font-size: 1.1rem;
+  color: #aaa;
 }
