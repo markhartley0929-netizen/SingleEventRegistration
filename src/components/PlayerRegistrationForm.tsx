@@ -41,7 +41,7 @@ type Address = {
   zip: string;
 };
 
-const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY as string;
+
 
 
 const EMPTY_ADDRESS: Address = {
@@ -73,19 +73,7 @@ export default function PlayerRegistrationForm({
   eventId,
 }: PlayerRegistrationFormProps) {
 
-  // =========================
-  // reCAPTCHA v3 loader (ONLY ONE)
-  // =========================
-  useEffect(() => {
-    if ((window as any).grecaptcha) return;
 
-    const script = document.createElement("script");
-    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
-    script.async = true;
-    script.defer = true;
-
-    document.head.appendChild(script);
-  }, []);
 
   const [registeringWithCompanion, setRegisteringWithCompanion] = useState(false);
   const [useSameAddress, setUseSameAddress] = useState(false);
@@ -288,22 +276,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
 
 
-let captchaToken: string;
 
-try {
-  captchaToken = await new Promise<string>((resolve, reject) => {
-    (window as any).grecaptcha.ready(() => {
-      (window as any).grecaptcha
-        .execute(RECAPTCHA_SITE_KEY, { action: "register_single_event" })
-        .then(resolve)
-        .catch(reject);
-    });
-  });
-} catch (err) {
-  console.error("reCAPTCHA execute failed", err);
-  alert("Captcha failed to run. Please hard refresh and try again.");
-  return;
-}
 
 
 setSubmitting(true);
@@ -376,13 +349,11 @@ payload = registeringWithCompanion
   ? {
       organizationId,
       primary: primaryPayload,
-      companion: companionPayload,
-      captchaToken,
+      companion: companionPayload,      
     }
   : {
       organizationId,
-      primary: primaryPayload,
-      captchaToken,
+      primary: primaryPayload,      
     };
 
 
