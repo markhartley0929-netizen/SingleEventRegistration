@@ -75,13 +75,26 @@ export default function HomePage() {
             <p>2 Jerseys • 1 pair of Shorts • 1 Hat</p>
           </div>
 
-          {/* PRIZE PACKAGE */}
-          <div className="section">
-            <h3>🏆 Prize Package</h3>
-            <p><strong>1st Place:</strong> 12 Bats</p>
-            <p><strong>2nd Place:</strong> 12 WICKD Softball Bags</p>
-            <p><strong>3rd Place:</strong> TBD</p>
-          </div>
+{/* PRIZE PACKAGE */}
+<div className="section">
+  <h3>🏆 Prize Package</h3>
+
+  <p>
+    <strong>🥇 1st Place:</strong><br />
+    12 Marucci Victus Bats • 12 Backpack Rollers • 12 Batting Gloves • WICKD Gear
+  </p>
+
+  <p>
+    <strong>🥈 2nd Place:</strong><br />
+    12 Anarchy Bats • 12 Backpack Rollers
+  </p>
+
+  <p>
+    <strong>🥉 3rd Place:</strong><br />
+    12 Backpack Rollers • WICKD Gear
+  </p>
+</div>
+
 
           {/* LOCATION */}
           <div className="section">
