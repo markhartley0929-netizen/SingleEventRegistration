@@ -110,3 +110,14 @@ h1 {
   font-size: 1rem;
 }
 
+.btn.secondary {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.btn.secondary:hover {
+  background: white;
+  color: black;
+}
+

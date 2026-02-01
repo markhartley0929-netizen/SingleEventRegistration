@@ -48,11 +48,16 @@ export default function HomePage() {
           </a>
         </div>
 
-        <div className="actions">
-          <Link to="/register" className="btn primary">
-            Register Now
-          </Link>
-        </div>
+       <div className="actions">
+  <Link to="/register" className="btn primary">
+    Register Now
+  </Link>
+
+  <Link to="/registrations" className="btn secondary">
+    View Registered Players
+  </Link>
+</div>
+
       </header>
     </div>
   );
