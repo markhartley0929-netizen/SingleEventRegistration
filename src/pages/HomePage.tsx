@@ -50,52 +50,57 @@ export default function HomePage() {
         <p className="event-dates">May 23–24, 2026</p>
         <p className="subhead">Slowpitch Softball • Draft Format</p>
 
-        {/* ENTRY & DETAILS (NO CARD) */}
-        <div className="section">
-          <h3>🪙 Entry & Details</h3>
+        {/* TOURNAMENT INFO GROUP */}
+        <div className="info-group-wrapper">
 
-          <p>
-            <strong>Entry Fee:</strong> ${ENTRY_FEE}
-          </p>
+          {/* ENTRY & DETAILS */}
+          <div className="section">
+            <h3>🪙 Entry & Details</h3>
 
-          <p className="highlight">
-            🔥 10% Early Bird Discount until {EARLY_BIRD_DEADLINE}
-          </p>
+            <p>
+              <strong>Entry Fee:</strong> ${ENTRY_FEE}
+            </p>
 
-          <p>
-            <strong>🎮 Game Guarantee:</strong> 5 Games Guaranteed
-          </p>
+            <p className="highlight">
+              🔥 10% Early Bird Discount until {EARLY_BIRD_DEADLINE}
+            </p>
 
-          <p>
-            <strong>👕 WCKD Wear Apparel Package:</strong>
-          </p>
-          <p>2 Jerseys • 2 Shorts • 1 Hat</p>
-        </div>
+            <p>
+              <strong>🎮 Game Guarantee:</strong> 5 Games Guaranteed
+            </p>
 
-        {/* PRIZE PACKAGE */}
-        <div className="section">
-          <h3>🏆 Prize Package</h3>
-          <p><strong>1st Place:</strong> 12 WCKD Bats</p>
-          <p><strong>2nd Place:</strong> 12 WCKD Softball Bags</p>
-          <p><strong>3rd Place:</strong> TBD</p>
-        </div>
+            <p>
+              <strong>👕 WCKD Wear Apparel Package:</strong>
+            </p>
+            <p>2 Jerseys • 2 Shorts • 1 Hat</p>
+          </div>
 
-        {/* LOCATION */}
-        <div className="section">
-          <p><strong>📍 Lake Fairview Softball Complex</strong></p>
-          <p>
-            2200 Lee Rd<br />
-            Orlando, FL 32810
-          </p>
+          {/* PRIZE PACKAGE */}
+          <div className="section">
+            <h3>🏆 Prize Package</h3>
+            <p><strong>1st Place:</strong> 12 WCKD Bats</p>
+            <p><strong>2nd Place:</strong> 12 WCKD Softball Bags</p>
+            <p><strong>3rd Place:</strong> TBD</p>
+          </div>
 
-          <a
-            href="https://www.google.com/maps/search/?api=1&query=2200+Lee+Rd+Orlando+FL+32810"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="map-link"
-          >
-            View on Google Maps
-          </a>
+          {/* LOCATION */}
+          <div className="section">
+            <p><strong>📍 Lake Fairview Softball Complex</strong></p>
+            <p>
+              2200 Lee Rd<br />
+              Orlando, FL 32810
+            </p>
+
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=2200+Lee+Rd+Orlando+FL+32810"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="map-link"
+            >
+              View on Google Maps
+            </a>
+          </div>
+
         </div>
 
         {/* PLAYER COUNTER (ONLY CARD ON PAGE) */}
