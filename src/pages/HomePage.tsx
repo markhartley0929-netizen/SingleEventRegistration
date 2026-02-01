@@ -62,31 +62,6 @@ export default function HomePage() {
           Slowpitch Softball • Draft Format
         </p>
 
-        {/* PLAYER COUNTER */}
-        <div className="player-counter">
-          <h3>👥 Player Registration</h3>
-
-          <p>
-            Women: <strong>{counts.women}</strong> / {WOMEN_CAP}
-          </p>
-          <p>
-            Men: <strong>{counts.men}</strong> / {MEN_CAP}
-          </p>
-
-          <hr />
-
-          <p>
-            <strong>Total Players:</strong> {counts.total} / {TOTAL_CAP}
-          </p>
-
-          <p>
-            <strong>Teams Filled:</strong> {teamsFilled} / {TEAM_CAP}
-          </p>
-
-          {isEventFull && (
-            <p className="full-warning">🚫 Event is Full</p>
-          )}
-        </div>
 
         {/* PRIZE PACKAGE */}
         <div className="prizes">
@@ -112,6 +87,33 @@ export default function HomePage() {
           >
             View on Google Maps
           </a>
+        </div>
+
+        
+        {/* PLAYER COUNTER */}
+        <div className="player-counter">
+          <h3>👥 Player Registration</h3>
+
+          <p>
+            Women: <strong>{counts.women}</strong> / {WOMEN_CAP}
+          </p>
+          <p>
+            Men: <strong>{counts.men}</strong> / {MEN_CAP}
+          </p>
+
+          <hr />
+
+          <p>
+            <strong>Total Players:</strong> {counts.total} / {TOTAL_CAP}
+          </p>
+
+          <p>
+            <strong>Teams Filled:</strong> {teamsFilled} / {TEAM_CAP}
+          </p>
+
+          {isEventFull && (
+            <p className="full-warning">🚫 Event is Full</p>
+          )}
         </div>
 
         {/* ACTIONS */}

@@ -122,14 +122,50 @@ h1 {
 }
 
 .player-counter {
-  margin: 20px auto;
-  padding: 16px;
-  max-width: 360px;
-  background: #111;
-  border: 1px solid #222;
-  border-radius: 8px;
+  margin: 24px auto;
+  padding: 14px 18px;
+  max-width: 420px;
+
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(6px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+
   text-align: center;
 }
+
+.counter-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+
+.player-counter p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+.player-counter strong {
+  font-weight: 600;
+}
+
+.player-counter .summary {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.full-warning {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #ff5c5c;
+  font-weight: 600;
+}
+
 
 .player-counter hr {
   margin: 10px 0;
