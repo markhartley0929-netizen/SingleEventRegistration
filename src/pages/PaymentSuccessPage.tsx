@@ -4,6 +4,7 @@ import {
   Link,
   useNavigate,
 } from "react-router-dom";
+import "./PaymentSuccessPage.css";
 
 type CaptureState = "idle" | "processing" | "success" | "error";
 
@@ -15,7 +16,7 @@ export default function PaymentSuccessPage() {
   const [state, setState] = useState<CaptureState>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Guard against double execution (React strict mode, refresh, etc.)
+  // Guard against double execution
   const hasCapturedRef = useRef(false);
 
   useEffect(() => {
@@ -34,18 +35,14 @@ export default function PaymentSuccessPage() {
       try {
         const res = await fetch("/api/paypalCaptureOrder", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ orderId }),
         });
 
         let data: any = null;
         try {
           data = await res.json();
-        } catch {
-          // backend might return empty body
-        }
+        } catch {}
 
         if (!res.ok) {
           throw new Error(data?.message || "Payment capture failed.");
@@ -64,21 +61,38 @@ export default function PaymentSuccessPage() {
     capture();
   }, [orderId]);
 
-  // -----------------------------
-  // Render states
-  // -----------------------------
+  /* =========================
+     Shared layout wrapper
+  ========================= */
+
+  const PageWrapper = ({ children }: { children: React.ReactNode }) => (
+    <div className="payment-page">
+      <img
+        src="/wickdwear-logo.png"
+        alt="WickdWear"
+        className="payment-logo"
+        onClick={() => navigate("/")}
+      />
+      <div className="payment-status-page">{children}</div>
+    </div>
+  );
+
+  /* =========================
+     Render states
+  ========================= */
+
   if (state === "processing" || state === "idle") {
     return (
-      <div className="payment-status-page">
+      <PageWrapper>
         <h1>Finalizing Registration…</h1>
         <p>Please wait while we confirm your payment.</p>
-      </div>
+      </PageWrapper>
     );
   }
 
   if (state === "success") {
     return (
-      <div className="payment-status-page">
+      <PageWrapper>
         <h1>✅ Registration Complete</h1>
         <p>You are officially registered for the event.</p>
 
@@ -94,19 +108,17 @@ export default function PaymentSuccessPage() {
             Back to Home
           </button>
         </div>
-      </div>
+      </PageWrapper>
     );
   }
 
-  // -----------------------------
-  // Error state
-  // -----------------------------
   return (
-    <div className="payment-status-page">
+    <PageWrapper>
       <h1>❌ Payment Issue</h1>
       <p>{errorMessage}</p>
 
       <button
+        className="secondary-button"
         onClick={() => {
           hasCapturedRef.current = false;
           setState("idle");
@@ -115,6 +127,6 @@ export default function PaymentSuccessPage() {
       >
         Retry Payment Confirmation
       </button>
-    </div>
+    </PageWrapper>
   );
 }

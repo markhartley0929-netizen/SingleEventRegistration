@@ -1,0 +1,90 @@
+/* =========================
+   Page wrapper
+========================= */
+
+.payment-page {
+  min-height: 100vh;
+  background: #000000; /* EXACT home page black */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 16px;
+  color: #f3f4f6;
+}
+
+/* =========================
+   Logo
+========================= */
+
+.payment-logo {
+  height: 96px;
+  margin-bottom: 36px;
+  cursor: pointer;
+}
+
+/* =========================
+   Card
+========================= */
+
+.payment-status-page {
+  width: 100%;
+  max-width: 520px;
+  background: #000000;
+  border-radius: 14px;
+  padding: 36px 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+/* =========================
+   Typography
+========================= */
+
+.payment-status-page h1 {
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.payment-status-page p {
+  margin-bottom: 20px;
+  color: #9ca3af;
+  font-size: 15px;
+}
+
+/* =========================
+   Actions
+========================= */
+
+.payment-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.primary-link {
+  background: #2563eb;
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.primary-link:hover {
+  background: #1e4fd8;
+}
+
+.secondary-button {
+  background: transparent;
+  color: #f3f4f6;
+  border: 1px solid #2a2a2a;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.secondary-button:hover {
+  background: #111111;
+}
