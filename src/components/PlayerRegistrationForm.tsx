@@ -28,7 +28,7 @@ import { getSecondaryPositions } from "../utils/positionRules";
 import { ApparelSize, Gender } from "../constants/apparelSizes";
 import { getVisibleApparelSizes } from "../utils/apparelSizeRules";
 import paypalLogo from "../assets/paypal-wordmark.svg";
-import logo from "../assets/wckdwear-logo.png";
+
 
 
 
@@ -453,12 +453,13 @@ return (
   <div className="register-page">
     {/* Logo header */}
     <div className="register-header">
-      <img
-        src={logo}
-        alt="WCKD Wear"
-        className="register-logo"
-        onClick={() => (window.location.href = "/")}
-      />
+  <img
+  src="/wickdwear-logo.png"
+  alt="WickdWear"
+  className="register-logo"
+  onClick={() => (window.location.href = "/")}
+/>
+
     </div>
 
     <form className="register-card" onSubmit={handleSubmit}>
