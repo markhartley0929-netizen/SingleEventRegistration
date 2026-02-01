@@ -8,7 +8,7 @@
 
 
 import React, { useEffect, useMemo, useState } from "react";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+
 
 
 import "../styles/register.css";
@@ -41,6 +41,9 @@ type Address = {
   zip: string;
 };
 
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY as string;
+
+
 const EMPTY_ADDRESS: Address = {
   street: "",
   city: "",
@@ -70,13 +73,35 @@ export default function PlayerRegistrationForm({
   eventId,
 }: PlayerRegistrationFormProps) {
 
-    const { executeRecaptcha } = useGoogleReCaptcha();
-    const captchaReady = typeof executeRecaptcha === "function";
+  
+  
 
   const [registeringWithCompanion, setRegisteringWithCompanion] = useState(false);
   const [useSameAddress, setUseSameAddress] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [attemptedSubmit, setAttemptedSubmit] = useState(false);
+
+const [captchaReady, setCaptchaReady] = useState(false);
+
+useEffect(() => {
+  if ((window as any).grecaptcha) {
+    setCaptchaReady(true);
+    return;
+  }
+
+  const script = document.createElement("script");
+  script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+  script.async = true;
+  script.defer = true;
+
+  script.onload = () => {
+    (window as any).grecaptcha.ready(() => {
+      setCaptchaReady(true);
+    });
+  };
+
+  document.head.appendChild(script);
+}, []);
 
 
 
@@ -185,6 +210,7 @@ const canSubmit =
   !submitting;
 
 
+
   const showIncompleteHint =
   !canSubmit &&
   !submitting &&
@@ -253,6 +279,15 @@ setCompanion((c) => ({ ...c, [fieldName]: value }));
 const handleSubmit = async (e: React.FormEvent) => {
 e.preventDefault();
 
+const captchaToken = await (window as any).grecaptcha.execute(
+  RECAPTCHA_SITE_KEY,
+  { action: "register_single_event" }
+);
+
+
+
+
+
 // -----------------------------
 // HARD GUARD — NO SIDE EFFECTS
 // -----------------------------
@@ -267,7 +302,6 @@ if (!canSubmit) {
 
 
 
-const captchaToken = await executeRecaptcha("register_single_event");
 
 
 setSubmitting(true);
