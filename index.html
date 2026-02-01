@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Single Event Registration</title>
+
+    <!-- ✅ REQUIRED: reCAPTCHA v3 bootstrap (Vite replaces env var at build time) -->
+    <script
+      src="https://www.google.com/recaptcha/api.js?render=%VITE_RECAPTCHA_SITE_KEY%"
+    ></script>
   </head>
   <body>
     <div id="root"></div>
