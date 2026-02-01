@@ -64,8 +64,15 @@ export default function RegisteredPlayers() {
   // ----------------------------------
   // Render Table
   // ----------------------------------
-  return (
-    <div className="registered-page">
+ return (
+  <div className="registered-page">
+    <img
+      src="/wickdwear-logo.png"
+      alt="WickdWear"
+      className="registered-logo"
+      onClick={() => (window.location.href = "/")}
+    />
+
       <h1>Registered Players</h1>
       <p style={{ opacity: 0.7, marginBottom: "16px" }}>
   Roster updates as players register
