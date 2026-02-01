@@ -71,6 +71,7 @@ export default function PlayerRegistrationForm({
 }: PlayerRegistrationFormProps) {
 
     const { executeRecaptcha } = useGoogleReCaptcha();
+    const captchaReady = typeof executeRecaptcha === "function";
 
   const [registeringWithCompanion, setRegisteringWithCompanion] = useState(false);
   const [useSameAddress, setUseSameAddress] = useState(false);
@@ -178,9 +179,11 @@ const isCompanionComplete = useMemo(() => {
 
 
 const canSubmit =
+  captchaReady &&
   isPrimaryComplete &&
   (!registeringWithCompanion || isCompanionComplete) &&
   !submitting;
+
 
   const showIncompleteHint =
   !canSubmit &&
@@ -262,10 +265,7 @@ if (!canSubmit) {
   return;
 }
 
-if (!executeRecaptcha) {
-  alert("Captcha not ready. Please refresh the page.");
-  return;
-}
+
 
 const captchaToken = await executeRecaptcha("register_single_event");
 
@@ -347,7 +347,7 @@ payload = registeringWithCompanion
     };
 
 
-setSubmitting(true);
+
 
 try {
   const res = await fetch("/api/registerSingleEvent", {
