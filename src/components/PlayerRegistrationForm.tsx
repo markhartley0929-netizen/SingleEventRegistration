@@ -277,34 +277,43 @@ setCompanion((c) => ({ ...c, [fieldName]: value }));
   };
 
 const handleSubmit = async (e: React.FormEvent) => {
-e.preventDefault();
+  e.preventDefault();
 
-const captchaToken = await (window as any).grecaptcha.execute(
-  RECAPTCHA_SITE_KEY,
-  { action: "register_single_event" }
-);
+  // -----------------------------
+  // HARD GUARD — NO SIDE EFFECTS
+  // -----------------------------
+  if (submitting) return;
 
+  if (!canSubmit) {
+    setAttemptedSubmit(true);
+    return;
+  }
 
+  if (!(window as any).grecaptcha) {
+    alert("Captcha not ready yet. Please wait a moment.");
+    return;
+  }
 
+  let captchaToken: string;
 
+  try {
+    captchaToken = await new Promise<string>((resolve, reject) => {
+      (window as any).grecaptcha.ready(() => {
+        (window as any).grecaptcha
+          .execute(RECAPTCHA_SITE_KEY, {
+            action: "register_single_event",
+          })
+          .then(resolve)
+          .catch(reject);
+      });
+    });
+  } catch {
+    alert("Captcha failed to initialize. Please refresh the page.");
+    return;
+  }
 
-// -----------------------------
-// HARD GUARD — NO SIDE EFFECTS
-// -----------------------------
-if (submitting) {
-  return;
-}
+  setSubmitting(true);
 
-if (!canSubmit) {
-  setAttemptedSubmit(true);
-  return;
-}
-
-
-
-
-
-setSubmitting(true);
 
 
 
