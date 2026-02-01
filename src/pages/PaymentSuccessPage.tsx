@@ -1,10 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import {
+  useSearchParams,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 
 type CaptureState = "idle" | "processing" | "success" | "error";
 
 export default function PaymentSuccessPage() {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const orderId = searchParams.get("token");
 
   const [state, setState] = useState<CaptureState>("idle");
@@ -76,12 +81,26 @@ export default function PaymentSuccessPage() {
       <div className="payment-status-page">
         <h1>✅ Registration Complete</h1>
         <p>You are officially registered for the event.</p>
-        <p>You may now close this window.</p>
+
+        <div className="payment-actions">
+          <Link to="/registered" className="primary-link">
+            View Registered Players
+          </Link>
+
+          <button
+            className="secondary-button"
+            onClick={() => navigate("/")}
+          >
+            Back to Home
+          </button>
+        </div>
       </div>
     );
   }
 
+  // -----------------------------
   // Error state
+  // -----------------------------
   return (
     <div className="payment-status-page">
       <h1>❌ Payment Issue</h1>
