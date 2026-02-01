@@ -1,9 +1,9 @@
-/* Page Layout */
+/* Page shell */
 .registered-page {
   min-height: 100vh;
-  background: radial-gradient(circle at top, #0a0a0a, #000);
+  background: #000;
   color: #f5f5f5;
-  padding: 60px 20px;
+  padding: 60px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,24 +11,23 @@
 
 /* Title */
 .registered-page h1 {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   margin-bottom: 24px;
   letter-spacing: 1px;
-  text-transform: uppercase;
 }
 
-/* Table Container */
+/* Table container */
 .table-wrapper {
   width: 100%;
   max-width: 900px;
-  background: #0f0f0f;
-  border-radius: 12px;
+  background: #0e0e0e;
+  border-radius: 10px;
   padding: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
   overflow-x: auto;
 }
 
-/* Table */
+/* Table base */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -45,9 +44,6 @@ th {
   text-align: left;
   font-weight: 600;
   color: #ddd;
-  position: sticky;
-  top: 0;
-  z-index: 1;
   white-space: nowrap;
 }
 
@@ -67,24 +63,11 @@ tbody tr:hover {
 /* Cells */
 td {
   padding: 10px 14px;
-  color: #eaeaea;
   white-space: nowrap;
+  color: #eaeaea;
 }
 
-/* Role badges */
-td:nth-child(5) {
-  font-weight: 600;
-}
-
-td:nth-child(5):contains("Primary") {
-  color: #4ade80;
-}
-
-td:nth-child(5):contains("Companion") {
-  color: #60a5fa;
-}
-
-/* Loading & Error */
+/* Loading / error */
 .loading,
 .error {
   margin-top: 40px;

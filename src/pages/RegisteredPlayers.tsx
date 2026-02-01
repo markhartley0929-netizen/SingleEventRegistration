@@ -68,7 +68,8 @@ export default function RegisteredPlayers() {
     <div className="registered-page">
       <h1>Registered Players</h1>
 
-      <table>
+      <div className="table-wrapper">
+  <table>
         <thead>
           <tr>
             <th>First</th>
@@ -93,6 +94,7 @@ export default function RegisteredPlayers() {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }
