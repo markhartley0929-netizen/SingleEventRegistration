@@ -222,3 +222,33 @@ h1 {
 }
 
 
+/* -----------------------------
+   CONTENT SECTION SPACING FIX
+   ----------------------------- */
+
+/* Space between Entry / Prize / Location groups */
+.info-group-wrapper {
+  margin: 2.5rem 0;
+}
+
+/* Each major section */
+.section {
+  margin-bottom: 2.75rem; /* 👈 main vertical separation */
+}
+
+/* Headings need stronger separation */
+.section h3 {
+  margin-bottom: 1rem;
+}
+
+/* Paragraph rhythm — this kills the wall-of-text feel */
+.section p {
+  margin: 0.55rem 0;
+  line-height: 1.65;
+}
+
+/* Subtle divider between sections (not a card) */
+.section:not(:last-child) {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
