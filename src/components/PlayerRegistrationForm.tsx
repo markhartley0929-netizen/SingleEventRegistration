@@ -28,6 +28,7 @@ import { getSecondaryPositions } from "../utils/positionRules";
 import { ApparelSize, Gender } from "../constants/apparelSizes";
 import { getVisibleApparelSizes } from "../utils/apparelSizeRules";
 import paypalLogo from "../assets/paypal-wordmark.svg";
+import logo from "../assets/wckdwear-logo.png";
 
 
 
@@ -448,9 +449,20 @@ alert(data?.message || "Registration failed");
 };
 
 
-  return (
-    <div className="register-page">
-      <form className="register-card" onSubmit={handleSubmit}>
+return (
+  <div className="register-page">
+    {/* Logo header */}
+    <div className="register-header">
+      <img
+        src={logo}
+        alt="WCKD Wear"
+        className="register-logo"
+        onClick={() => (window.location.href = "/")}
+      />
+    </div>
+
+    <form className="register-card" onSubmit={handleSubmit}>
+
        <h1>Memorial Day Draft Registration</h1>
 <p className="form-subtitle">
   Register below to secure your spot in the Memorial Day Draft Event
