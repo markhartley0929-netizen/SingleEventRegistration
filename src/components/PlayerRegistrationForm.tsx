@@ -84,24 +84,18 @@ export default function PlayerRegistrationForm({
 const [captchaReady, setCaptchaReady] = useState(false);
 
 useEffect(() => {
-  // If grecaptcha already exists, just wait for readiness
-  if ((window as any).grecaptcha) {
-    (window as any).grecaptcha.ready(() => {
-      setCaptchaReady(true);
-    });
-    return;
-  }
+  // 🔥 HARD RESET: remove any existing reCAPTCHA scripts/clients
+  document
+    .querySelectorAll('script[src*="recaptcha"]')
+    .forEach((s) => s.remove());
 
-  // Prevent duplicate script injection (React 18 StrictMode safe)
-  if (document.querySelector("script[data-recaptcha]")) {
-    return;
-  }
+  delete (window as any).grecaptcha;
 
+  // ✅ Load v3 with an explicit site key bound via render=
   const script = document.createElement("script");
   script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
   script.async = true;
   script.defer = true;
-  script.setAttribute("data-recaptcha", "true");
 
   script.onload = () => {
     (window as any).grecaptcha.ready(() => {
@@ -111,6 +105,7 @@ useEffect(() => {
 
   document.head.appendChild(script);
 }, []);
+
 
 
 
@@ -303,7 +298,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
 
 if (!captchaReady || !(window as any).grecaptcha) {
-  alert("Captcha is still initializing. Please wait 1 second and try again.");
+  alert("Captcha still loading. Please wait one second and try again.");
   return;
 }
 
@@ -316,11 +311,12 @@ try {
   );
 } catch (err) {
   console.error("reCAPTCHA execute failed", err);
-  alert("Captcha failed to run. Please refresh the page.");
+  alert("Captcha failed to run. Please hard refresh and try again.");
   return;
 }
 
 setSubmitting(true);
+
 
 
 
