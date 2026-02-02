@@ -233,3 +233,19 @@
   font-size: 14px;
   cursor: pointer;
 }
+
+/* =========================
+   SCROLL FIX (REGISTER PAGE)
+========================= */
+
+.register-page {
+  min-height: 100dvh;   /* fix viewport math */
+  overflow-y: auto;     /* ensure wheel scrolling */
+}
+
+/* Desktop safety: allow normal scroll chaining */
+@media (min-width: 769px) {
+  .register-page {
+    overscroll-behavior: auto;
+  }
+}
