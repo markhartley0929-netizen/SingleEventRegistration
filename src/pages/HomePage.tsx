@@ -59,6 +59,7 @@ export default function HomePage() {
 
             <p>
               <strong>Entry Fee:</strong> ${ENTRY_FEE}
+               <span className="fee-note">(3% processing fee applies)</span>
             </p>
 
             <p className="highlight">
