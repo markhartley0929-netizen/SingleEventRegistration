@@ -6,7 +6,8 @@ import {
   ALL_APPAREL_SIZES,
   ApparelSize,
   Gender,
-} from "@/constants/apparelSizes";
+} from "../constants/apparelSizes";
+
 
 /**
  * Returns the apparel sizes visible to a registrant

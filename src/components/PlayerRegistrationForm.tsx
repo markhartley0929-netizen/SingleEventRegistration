@@ -25,7 +25,12 @@ import { getSecondaryPositions } from "../utils/positionRules";
 /* =========================
    Apparel Sizes
 ========================= */
-import { ApparelSize, Gender } from "../constants/apparelSizes";
+import {
+  ApparelSize,
+  Gender,
+  MEN_APPAREL_SIZES,
+} from "../constants/apparelSizes";
+
 import { getVisibleApparelSizes } from "../utils/apparelSizeRules";
 import paypalLogo from "../assets/paypal-wordmark.svg";
 
@@ -594,12 +599,14 @@ return (
     ))}
   </select>
 
-  <select name="shortSize" value={primary.shortSize} onChange={handlePrimaryChange}>
-    <option value="">Short Size</option>
-    {getVisibleApparelSizes(primary.sex).map((s) => (
-      <option key={s} value={s}>{s}</option>
-    ))}
-  </select>
+<select name="shortSize" value={primary.shortSize} onChange={handlePrimaryChange}>
+  <option value="">Short Size</option>
+  {MEN_APPAREL_SIZES.map((s) => (
+    <option key={s} value={s}>{s}</option>
+  ))}
+</select>
+
+
 </div>
 
 <div
