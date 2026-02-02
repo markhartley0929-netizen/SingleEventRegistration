@@ -123,3 +123,14 @@ body {
   }
 }
 
+/* =========================
+   HARD SCROLL RESET
+========================= */
+
+html,
+body {
+  height: auto !important;
+  min-height: 100%;
+  overflow-y: auto !important;
+  overflow-x: visible !important;
+}
