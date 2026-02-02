@@ -57,10 +57,12 @@ export default function HomePage() {
           <div className="section">
             <h3>🪙 Entry & Details</h3>
 
-            <p>
-              <strong>Entry Fee:</strong> ${ENTRY_FEE}
-               <span className="fee-note">(3% processing fee applies)</span>
-            </p>
+        <p>
+  <strong>Entry Fee:</strong> ${ENTRY_FEE}
+</p>
+<p className="fee-note">
+  3% processing fee applies
+</p>
 
             <p className="highlight">
               🔥 10% Early Bird Discount until {EARLY_BIRD_DEADLINE}
