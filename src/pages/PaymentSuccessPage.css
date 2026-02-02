@@ -4,12 +4,17 @@
 
 .payment-page {
   min-height: 100vh;
+  min-height: 100dvh; /* modern mobile-safe vh */
   background: #000000; /* EXACT home page black */
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 48px 16px;
   color: #f3f4f6;
+
+  /* SAFE scroll control (scoped) */
+  overflow-x: hidden;
+  overscroll-behavior: contain;
 }
 
 /* =========================
@@ -90,24 +95,9 @@
 }
 
 /* =========================
-   MOBILE FIX PATCH (DROP-IN)
+   Mobile polish
 ========================= */
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  background: #000000;
-  overflow-x: hidden;
-  overscroll-behavior: none;
-}
-
-/* Fix mobile viewport height issues */
-.payment-page {
-  min-height: 100dvh;
-}
-
-/* Mobile spacing & actions polish */
 @media (max-width: 480px) {
   .payment-status-page {
     padding: 28px 20px;
@@ -121,16 +111,4 @@ body {
   .secondary-button {
     width: 100%;
   }
-}
-
-/* =========================
-   HARD SCROLL RESET
-========================= */
-
-html,
-body {
-  height: auto !important;
-  min-height: 100%;
-  overflow-y: auto !important;
-  overflow-x: visible !important;
 }
