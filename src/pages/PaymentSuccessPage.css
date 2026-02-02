@@ -88,3 +88,38 @@
 .secondary-button:hover {
   background: #111111;
 }
+
+/* =========================
+   MOBILE FIX PATCH (DROP-IN)
+========================= */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #000000;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+}
+
+/* Fix mobile viewport height issues */
+.payment-page {
+  min-height: 100dvh;
+}
+
+/* Mobile spacing & actions polish */
+@media (max-width: 480px) {
+  .payment-status-page {
+    padding: 28px 20px;
+  }
+
+  .payment-actions {
+    flex-direction: column;
+  }
+
+  .primary-link,
+  .secondary-button {
+    width: 100%;
+  }
+}
+
