@@ -95,6 +95,7 @@ export default function PlayerRegistrationForm({
     firstName: "",
     lastName: "",
     email: "",
+    phone: "", // ← ADD
     sex: "" as Gender | "",
     skillLevel: "",
     jerseySize: "" as ApparelSize | "",
@@ -110,6 +111,7 @@ export default function PlayerRegistrationForm({
     firstName: "",
     lastName: "",
     email: "",
+    phone: "", // ← ADD
     sex: "" as Gender | "",
     skillLevel: "",
     jerseySize: "" as ApparelSize | "",
@@ -141,6 +143,7 @@ const isPrimaryComplete = useMemo(() => {
     primary.firstName.trim() &&
     primary.lastName.trim() &&
     primary.email.trim() &&
+    primary.phone.trim() &&
     primary.sex &&
     primary.skillLevel &&
     primary.jerseySize &&
@@ -174,6 +177,7 @@ const isCompanionComplete = useMemo(() => {
     companion.firstName.trim() &&
     companion.lastName.trim() &&
     companion.email.trim() &&
+    companion.phone.trim() &&
     companion.sex &&
     companion.skillLevel &&
     companion.jerseySize &&
@@ -295,6 +299,7 @@ setSubmitting(true);
   firstName: primary.firstName,
   lastName: primary.lastName,
   email: primary.email,
+  phone: primary.phone || null, // ← ADD
   sex: primary.sex,
 
   jerseyNumber: primary.jerseyNumber || null,
@@ -320,6 +325,7 @@ const companionPayload = {
   firstName: companion.firstName,
   lastName: companion.lastName,
   email: companion.email,
+  phone: companion.phone || null, // ← ADD
   sex: companion.sex,
 
   jerseyNumber: companion.jerseyNumber || null,
@@ -491,6 +497,15 @@ return (
   onChange={handlePrimaryChange}
 />
 
+<input
+  type="tel"
+  name="phone"
+  placeholder="Phone Number"
+  value={primary.phone}
+  onChange={handlePrimaryChange}
+/>
+
+
 
 <div className="radio-row">
   <label>
@@ -659,6 +674,15 @@ return (
   value={companion.email}
   onChange={handleCompanionChange}
 />
+
+<input
+  type="tel"
+  name="phone"
+  placeholder="Phone Number"
+  value={companion.phone}
+  onChange={handleCompanionChange}
+/>
+
 
 
             <div className="radio-row">
