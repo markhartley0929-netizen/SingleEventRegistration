@@ -73,7 +73,7 @@
    Inputs & selects (dark)
 ========================= */
 
-.register-card input,
+.register-card input:not([type="radio"]):not([type="checkbox"]),
 .register-card select {
   width: 100%;
   padding: 12px 14px;
@@ -85,6 +85,7 @@
   font-size: 0.95rem;
   box-sizing: border-box;
 }
+
 
 .register-card input::placeholder {
   color: #9ca3af;
@@ -128,6 +129,15 @@
 .radio-row input[type="radio"] {
   margin: 0;
 }
+
+/* Safari hardening for radio inputs */
+.radio-row input[type="radio"] {
+  width: auto;
+  padding: 0;
+  margin: 0;
+  box-sizing: content-box;
+}
+
 
 /* =========================
    Checkbox rows
