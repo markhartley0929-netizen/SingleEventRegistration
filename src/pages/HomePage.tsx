@@ -94,7 +94,7 @@ export default function HomePage() {
 
   <p>
     <strong>🥉 3rd Place:</strong><br />
-    12 Backpack Rollers • WICKD Gear
+    12 Bags • WICKD Gear
   </p>
 </div>
 
