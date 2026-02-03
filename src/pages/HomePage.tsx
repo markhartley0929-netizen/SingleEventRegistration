@@ -57,12 +57,12 @@ export default function HomePage() {
           <div className="section">
             <h3>🪙 Entry & Details</h3>
 
-        <p>
-  <strong>Entry Fee:</strong> ${ENTRY_FEE}
-</p>
-<p className="fee-note">
-  3% processing fee applies
-</p>
+            <p>
+              <strong>Entry Fee:</strong> ${ENTRY_FEE}
+            </p>
+            <p className="fee-note">
+              3% processing fee applies
+            </p>
 
             <p className="highlight">
               🔥 10% Early Bird Discount until {EARLY_BIRD_DEADLINE}
@@ -78,26 +78,25 @@ export default function HomePage() {
             <p>2 Jerseys • 1 pair of Shorts • 1 Hat</p>
           </div>
 
-{/* PRIZE PACKAGE */}
-<div className="section">
-  <h3>🏆 Prize Package</h3>
+          {/* PRIZE PACKAGE */}
+          <div className="section">
+            <h3>🏆 Prize Package</h3>
 
-  <p>
-    <strong>🥇 1st Place:</strong><br />
-    12 Marucci Victus Bats • 12 Backpack Rollers • 12 Batting Gloves • WICKD Gear
-  </p>
+            <p>
+              <strong>🥇 1st Place:</strong><br />
+              12 Marucci Victus Bats • 12 Backpack Rollers • 12 Batting Gloves • WICKD Gear
+            </p>
 
-  <p>
-    <strong>🥈 2nd Place:</strong><br />
-    12 Anarchy Bats • 12 Backpack Rollers
-  </p>
+            <p>
+              <strong>🥈 2nd Place:</strong><br />
+              12 Anarchy Bats • 12 Backpack Rollers
+            </p>
 
-  <p>
-    <strong>🥉 3rd Place:</strong><br />
-    12 Bags • WICKD Gear
-  </p>
-</div>
-
+            <p>
+              <strong>🥉 3rd Place:</strong><br />
+              12 Bags • WICKD Gear
+            </p>
+          </div>
 
           {/* LOCATION */}
           <div className="section">
@@ -119,7 +118,17 @@ export default function HomePage() {
 
         </div>
 
-        {/* PLAYER COUNTER */}
+        {/*
+          =====================================================
+          TEMPORARILY HIDDEN PER CUSTOMER REQUEST
+          - Public player counts
+          - Event fullness indicator
+          - "View Registered Players" button
+          Re-enable by uncommenting this block
+          =====================================================
+        */}
+
+        {/*
         <div className="player-counter">
           <h3>👥 14 Team / 168 Player Cap</h3>
 
@@ -140,6 +149,7 @@ export default function HomePage() {
             <p className="full-warning">🚫 Event is Full</p>
           )}
         </div>
+        */}
 
         {/* ACTIONS */}
         <div className="actions">
@@ -153,9 +163,11 @@ export default function HomePage() {
             </button>
           )}
 
+          {/*
           <Link to="/registrations" className="btn secondary">
             View Registered Players
           </Link>
+          */}
         </div>
       </header>
     </div>

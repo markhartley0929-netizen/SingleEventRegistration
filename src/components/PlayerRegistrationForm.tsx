@@ -96,21 +96,25 @@ export default function PlayerRegistrationForm({
 
 
 
-  const [primary, setPrimary] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "", // ← ADD
-    sex: "" as Gender | "",
-    skillLevel: "",
-    jerseySize: "" as ApparelSize | "",
-    shortSize: "" as ApparelSize | "",
-    jerseyNumber: "",
-    jerseyName: "",
-    preferredPosition: "" as Position | "",
-    secondaryPosition: "" as Position | "",
-    address: { ...EMPTY_ADDRESS },
-  });
+const [primary, setPrimary] = useState({
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  sex: "" as Gender | "",
+  skillLevel: "",
+  jerseySize: "" as ApparelSize | "",
+  shortSize: "" as ApparelSize | "",
+  jerseyNumber: "",
+  jerseyName: "",
+  preferredPosition: "" as Position | "",
+  secondaryPosition: "" as Position | "",
+  address: { ...EMPTY_ADDRESS },
+
+  // ✅ OPTIONAL — PRIMARY PLAYER ONLY
+  repCode: "",
+});
+
 
   const [companion, setCompanion] = useState({
     firstName: "",
@@ -300,12 +304,15 @@ setSubmitting(true);
   const organizationId = "d986892d-a116-40b2-98c5-d04e27648817";
 
 
-  const primaryPayload = {
+const primaryPayload = {
   firstName: primary.firstName,
   lastName: primary.lastName,
   email: primary.email,
-  phone: primary.phone || null, // ← ADD
+  phone: primary.phone || null,
   sex: primary.sex,
+
+  // ✅ NEW — OPTIONAL REP CODE
+  repCode: primary.repCode?.trim() || null,
 
   jerseyNumber: primary.jerseyNumber || null,
   jerseyName: primary.jerseyName || null,
@@ -325,6 +332,7 @@ setSubmitting(true);
     secondaryPosition: primary.secondaryPosition || null,
   },
 };
+
 
 const companionPayload = {
   firstName: companion.firstName,
@@ -646,6 +654,14 @@ return (
       <option key={p} value={p}>{p}</option>
     ))}
 </select>
+
+<input
+  name="repCode"
+  placeholder="Rep Code (optional)"
+  value={primary.repCode}
+  onChange={handlePrimaryChange}
+/>
+
 
 </div>
 
