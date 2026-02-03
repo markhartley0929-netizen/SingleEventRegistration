@@ -1,106 +1,125 @@
 import { useEffect, useState } from "react";
+import "./RepLeaderboard.css";
 
-type RepLeaderboardRow = {
+// ----------------------------------
+// Types
+// ----------------------------------
+interface RepLeaderboardRow {
   rep_code_id: number;
   rep_code: string;
   first_name: string;
   last_name: string;
   organization: string | null;
   registrations: number;
-};
+}
 
+// ----------------------------------
+// Constants
+// ----------------------------------
 const EVENT_ID = "b04de545-5aee-4403-86b1-03db1e5c4a86";
 
+const API_BASE =
+  "https://single-event-registration-api-v2-cqd5bferhcbsftda.centralus-01.azurewebsites.net";
+
+const API_URL = `${API_BASE}/api/getrepleaderboard?eventId=${EVENT_ID}`;
+
+// ----------------------------------
+// Component
+// ----------------------------------
 export default function RepLeaderboard() {
   const [rows, setRows] = useState<RepLeaderboardRow[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function loadLeaderboard() {
-      try {
-        const res = await fetch(
-          `/api/getRepLeaderboard?eventId=${EVENT_ID}`
-        );
-
-        const data = await res.json();
-
-        if (!res.ok || !data.ok) {
-          throw new Error("Failed to load leaderboard");
+    fetch(API_URL)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}`);
         }
-
-        setRows(data.leaderboard);
-      } catch (err) {
-        console.error(err);
-        setError("Failed to load leaderboard");
-      } finally {
+        return res.json();
+      })
+      .then((data) => {
+        setRows(data.leaderboard || []);
         setLoading(false);
-      }
-    }
-
-    loadLeaderboard();
+      })
+      .catch((err) => {
+        console.error("❌ Failed to load rep leaderboard", err);
+        setError("Could not load rep leaderboard");
+        setLoading(false);
+      });
   }, []);
 
+  // ----------------------------------
+  // Render States
+  // ----------------------------------
   if (loading) {
-    return <p style={{ textAlign: "center" }}>Loading leaderboard…</p>;
+    return <p className="loading">Loading leaderboard...</p>;
   }
 
   if (error) {
-    return (
-      <p style={{ textAlign: "center", color: "red" }}>
-        {error}
-      </p>
-    );
+    return <p className="error">{error}</p>;
   }
 
+  // ----------------------------------
+  // Render Table
+  // ----------------------------------
   return (
-    <div style={{ padding: "24px" }}>
-      <h1 style={{ textAlign: "center" }}>🏆 Rep Leaderboard</h1>
+    <div className="rep-leaderboard-page">
+      <img
+        src="/wickdwear-logo.png"
+        alt="WickdWear"
+        className="registered-logo"
+        onClick={() => (window.location.href = "/")}
+      />
 
-      <table
-        style={{
-          width: "100%",
-          maxWidth: "900px",
-          margin: "24px auto",
-          borderCollapse: "collapse",
-        }}
-      >
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Rep</th>
-            <th>Organization</th>
-            <th>Rep Code</th>
-            <th>Registrations</th>
-          </tr>
-        </thead>
+      <h1>Rep Leaderboard</h1>
 
-        <tbody>
-          {rows.length === 0 && (
-            <tr>
-              <td colSpan={5} style={{ textAlign: "center" }}>
-                No data
-              </td>
-            </tr>
-          )}
+      <p style={{ opacity: 0.7, marginBottom: "16px" }}>
+        Signups attributed to each rep
+      </p>
 
-          {rows.map((rep, index) => (
-            <tr key={rep.rep_code_id}>
-              <td style={{ textAlign: "center" }}>
-                {index + 1}
-              </td>
-              <td>
-                {rep.first_name} {rep.last_name}
-              </td>
-              <td>{rep.organization ?? ""}</td>
-              <td>{rep.rep_code}</td>
-              <td style={{ textAlign: "center", fontWeight: "bold" }}>
-                {rep.registrations}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="table-wrapper">
+        {rows.length === 0 ? (
+          <div className="rep-empty">
+            No rep signups yet.
+          </div>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Rep</th>
+                <th>Organization</th>
+                <th>Rep Code</th>
+                <th>Registrations</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {rows.map((rep, index) => (
+                <tr key={rep.rep_code_id}>
+                  <td className="rep-rank">{index + 1}</td>
+
+                  <td>
+                    <strong>
+                      {rep.first_name} {rep.last_name}
+                    </strong>
+                  </td>
+
+                  <td>{rep.organization ?? "—"}</td>
+
+                  <td>{rep.rep_code}</td>
+
+                  <td className="rep-count">
+                    {rep.registrations}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   );
 }
