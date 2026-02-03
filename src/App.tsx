@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import PlayerRegistrationForm from "./components/PlayerRegistrationForm";
 import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import RegisteredPlayers from "./pages/RegisteredPlayers";
+import RepLeaderboard from "./pages/RepLeaderboard";
 
 const EVENT_ID = "b04de545-5aee-4403-86b1-03db1e5c4a86";
 
@@ -21,8 +22,14 @@ export default function App() {
       {/* REGISTERED PLAYERS PAGE */}
       <Route path="/registrations" element={<RegisteredPlayers />} />
 
+      {/* REP LEADERBOARD PAGE */}
+<Route path="/rep-leaderboard" element={<RepLeaderboard />} />
+ 
+
       {/* PAYPAL SUCCESS RETURN */}
       <Route path="/payment-success" element={<PaymentSuccessPage />} />
+
+      
     </Routes>
   );
 }
