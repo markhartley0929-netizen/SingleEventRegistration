@@ -92,7 +92,7 @@ export default function RulesPage() {
               <h3>Walk Rule</h3>
               <ul>
                 <li>
-                  Walked male — the female batting behind him may hit or walk
+                  Walked male - the female batting behind him may hit or walk
                 </li>
               </ul>
             </div>
