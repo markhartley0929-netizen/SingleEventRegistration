@@ -18,9 +18,9 @@ export default function RulesPage() {
 
         <div className="rules-container">
 
-          {/* GROUP 1 — TOURNAMENT SETUP */}
+          {/* GROUP 1 — TOURNAMENT FORMAT */}
           <div className="rules-card">
-          
+            <h2>Tournament Format & Lineups</h2>
 
             <div className="rules-block">
               <h3>Tournament Format</h3>
@@ -118,7 +118,8 @@ export default function RulesPage() {
             Everyone must bat & play. Have fun & stay <strong>WICKD!</strong>
           </p>
 
-          <Link to="/" className="btn secondary rules-back">
+          {/* PRIMARY BUTTON — MATCH HOME PAGE */}
+          <Link to="/" className="btn primary rules-back">
             ← Back to Event
           </Link>
 
