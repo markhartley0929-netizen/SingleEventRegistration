@@ -27,6 +27,16 @@ export default function RulesPage() {
           </div>
 
           <div className="rules-section">
+            <h3>🧾 Lineups</h3>
+            <ul>
+              <li>Bat 10</li>
+              <li>Lineups may only be exchanged before first pitch</li>
+              <li>Everyone must bat and play</li>
+              <li>Male spots cannot be EHD</li>
+            </ul>
+          </div>
+
+                <div className="rules-section">
             <h3>🎯 Pitching</h3>
             <ul>
               <li>4–10 ft arc required</li>
@@ -38,17 +48,7 @@ export default function RulesPage() {
           </div>
 
           <div className="rules-section">
-            <h3>🧾 Lineups</h3>
-            <ul>
-              <li>Bat 10</li>
-              <li>Lineups may only be exchanged before first pitch</li>
-              <li>Everyone must bat and play</li>
-              <li>Male spots cannot be EHD</li>
-            </ul>
-          </div>
-
-          <div className="rules-section">
-            <h3>🥅 Pitching Net & Bucket</h3>
+            <h3>🎯  Pitching Net & Bucket</h3>
             <ul>
               <li>Pump fakes allowed</li>
               <li>Net and bucket may be used</li>
