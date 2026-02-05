@@ -1,52 +1,69 @@
 .rules-hero {
-  max-width: 900px;
+  max-width: 860px;
 }
 
-/* Two-column grid */
-.rules-wrapper {
-  margin-top: 32px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 36px 48px;
+/* Container */
+.rules-container {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
-/* Individual rule blocks */
-.rules-section h3 {
-  margin-bottom: 10px;
-  font-size: 1.1rem;
+/* Subtle card styling */
+.rules-card {
+  padding: 24px 26px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.rules-section ul {
+/* Card titles */
+.rules-card h2 {
+  margin-bottom: 18px;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* Rule blocks inside cards */
+.rules-block + .rules-block {
+  margin-top: 18px;
+}
+
+.rules-block h3 {
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* Lists */
+.rules-block ul {
   list-style: none;
   padding-left: 0;
   margin: 0;
 }
 
-.rules-section li {
+.rules-block li {
   margin-bottom: 6px;
   opacity: 0.95;
 }
 
-/* Footer note spans both columns */
+/* Footer */
 .rules-footer {
-  grid-column: 1 / -1;
-  margin-top: 24px;
-  font-weight: 600;
+  margin-top: 12px;
   text-align: center;
+  font-weight: 600;
   opacity: 0.95;
 }
 
-/* Back button centered */
+/* Back button */
 .rules-back {
-  grid-column: 1 / -1;
-  margin-top: 12px;
   align-self: center;
 }
 
-/* Mobile: collapse to single column */
+/* Mobile tuning */
 @media (max-width: 768px) {
-  .rules-wrapper {
-    grid-template-columns: 1fr;
-    gap: 28px;
+  .rules-card {
+    padding: 20px;
   }
 }
