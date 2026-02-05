@@ -18,7 +18,7 @@ export default function RulesPage() {
 
 <div className="rules-wrapper">
 
-  {/* TOURNAMENT FORMAT */}
+  {/* LEFT COLUMN — EVENT FLOW */}
   <div className="rules-section">
     <h3>⚾ Tournament Format</h3>
     <ul>
@@ -27,9 +27,6 @@ export default function RulesPage() {
     </ul>
   </div>
 
-  <div className="rules-divider" />
-
-  {/* LINEUPS */}
   <div className="rules-section">
     <h3>🧾 Lineups</h3>
     <ul>
@@ -40,9 +37,6 @@ export default function RulesPage() {
     </ul>
   </div>
 
-  <div className="rules-divider" />
-
-  {/* PITCHING */}
   <div className="rules-section">
     <h3>🎯 Pitching</h3>
     <ul>
@@ -54,9 +48,6 @@ export default function RulesPage() {
     </ul>
   </div>
 
-  <div className="rules-divider" />
-
-  {/* PITCHING NET & BUCKET */}
   <div className="rules-section">
     <h3>🎯 Pitching Net & Bucket</h3>
     <ul>
@@ -67,9 +58,7 @@ export default function RulesPage() {
     </ul>
   </div>
 
-  <div className="rules-divider" />
-
-  {/* HOME RUNS */}
+  {/* RIGHT COLUMN — IN-GAME RULES */}
   <div className="rules-section">
     <h3>💣 Home Runs</h3>
     <ul>
@@ -77,9 +66,6 @@ export default function RulesPage() {
     </ul>
   </div>
 
-  <div className="rules-divider" />
-
-  {/* COURTESY RUNNERS */}
   <div className="rules-section">
     <h3>🏃 Courtesy Runners</h3>
     <ul>
@@ -88,9 +74,6 @@ export default function RulesPage() {
     </ul>
   </div>
 
-  <div className="rules-divider" />
-
-  {/* WALK RULE */}
   <div className="rules-section">
     <h3>🚶 Walk Rule</h3>
     <ul>
@@ -100,9 +83,6 @@ export default function RulesPage() {
     </ul>
   </div>
 
-  <div className="rules-divider" />
-
-  {/* GENERAL */}
   <div className="rules-section">
     <h3>📋 General Rules</h3>
     <ul>
@@ -122,6 +102,7 @@ export default function RulesPage() {
   </Link>
 
 </div>
+
 
       </header>
     </div>

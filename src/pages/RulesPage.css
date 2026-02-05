@@ -1,14 +1,16 @@
 .rules-hero {
-  max-width: 720px;
+  max-width: 900px;
 }
 
+/* Two-column grid */
 .rules-wrapper {
   margin-top: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px 48px;
 }
 
+/* Individual rule blocks */
 .rules-section h3 {
   margin-bottom: 10px;
   font-size: 1.1rem;
@@ -25,21 +27,26 @@
   opacity: 0.95;
 }
 
+/* Footer note spans both columns */
 .rules-footer {
-  margin-top: 20px;
+  grid-column: 1 / -1;
+  margin-top: 24px;
   font-weight: 600;
   text-align: center;
   opacity: 0.95;
 }
 
+/* Back button centered */
 .rules-back {
-  margin-top: 24px;
+  grid-column: 1 / -1;
+  margin-top: 12px;
   align-self: center;
 }
 
-.rules-divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.08);
-  margin: 28px 0;
-  width: 100%;
+/* Mobile: collapse to single column */
+@media (max-width: 768px) {
+  .rules-wrapper {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
 }
