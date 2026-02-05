@@ -78,4 +78,7 @@
 
 /* Mobile tuning */
 @media (max-width: 768px) {
-  .r
+  .rules-card {
+    padding: 20px;
+  }
+}
