@@ -20,10 +20,10 @@ export default function RulesPage() {
 
           {/* GROUP 1 — TOURNAMENT FORMAT */}
           <div className="rules-card">
-            <h2>Tournament Format & Lineups</h2>
+            <h2>Tournament Format:</h2>
 
             <div className="rules-block">
-              <h3>Tournament Format</h3>
+             
               <ul>
                 <li>5-game guarantee</li>
                 <li>Double elimination bracket</li>
@@ -43,7 +43,7 @@ export default function RulesPage() {
 
           {/* GROUP 2 — PITCHING */}
           <div className="rules-card">
-            <h2>Pitching Rules</h2>
+            <h2>Pitching Rules:</h2>
 
             <div className="rules-block">
               <h3>Pitching</h3>
@@ -71,7 +71,7 @@ export default function RulesPage() {
 
           {/* GROUP 3 — GAME PLAY */}
           <div className="rules-card">
-            <h2>Game Play Rules</h2>
+            <h2>Game Play Rules:</h2>
 
             <div className="rules-block">
               <h3>Home Runs</h3>
@@ -100,7 +100,7 @@ export default function RulesPage() {
 
           {/* GROUP 4 — GENERAL */}
           <div className="rules-card">
-            <h2>General Rules</h2>
+            <h2>General Rules:</h2>
 
             <div className="rules-block">
               <ul>
