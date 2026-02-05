@@ -20,7 +20,7 @@ export default function RulesPage() {
 
           {/* GROUP 1 — TOURNAMENT SETUP */}
           <div className="rules-card">
-            <h2>Tournament Setup</h2>
+          
 
             <div className="rules-block">
               <h3>Tournament Format</h3>
