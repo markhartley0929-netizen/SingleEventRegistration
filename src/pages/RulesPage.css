@@ -1,0 +1,38 @@
+.rules-hero {
+  max-width: 720px;
+}
+
+.rules-wrapper {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.rules-section h3 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.rules-section ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.rules-section li {
+  margin-bottom: 6px;
+  opacity: 0.95;
+}
+
+.rules-footer {
+  margin-top: 20px;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0.95;
+}
+
+.rules-back {
+  margin-top: 24px;
+  align-self: center;
+}
