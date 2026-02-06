@@ -11,7 +11,7 @@ type CaptureState = "idle" | "processing" | "success" | "error";
 export default function PaymentSuccessPage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const orderId = searchParams.get("token");
+const orderId = searchParams.get("orderId") || searchParams.get("token");
 
   const [state, setState] = useState<CaptureState>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -19,47 +19,57 @@ export default function PaymentSuccessPage() {
   // Guard against double execution
   const hasCapturedRef = useRef(false);
 
-  useEffect(() => {
-    if (!orderId) {
-      setState("error");
-      setErrorMessage("Missing PayPal order reference.");
-      return;
-    }
+useEffect(() => {
+  // 1. Venmo uses 'token', Standard uses 'orderId'
+  const activeId = searchParams.get("orderId") || searchParams.get("token");
 
-    if (hasCapturedRef.current) return;
-    hasCapturedRef.current = true;
+  if (!activeId) {
+    setState("error");
+    setErrorMessage("Missing PayPal order reference.");
+    return;
+  }
 
-    const capture = async () => {
-      setState("processing");
+  if (hasCapturedRef.current) return;
+  hasCapturedRef.current = true;
 
-      try {
-        const res = await fetch("/api/paypalCaptureOrder", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ orderId }),
-        });
+  const capture = async () => {
+    setState("processing");
+    console.log("Attempting capture for ID:", activeId);
 
-        let data: any = null;
-        try {
-          data = await res.json();
-        } catch {}
+    try {
+      const res = await fetch("/api/paypalCaptureOrder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderId: activeId }),
+      });
 
-        if (!res.ok) {
-          throw new Error(data?.message || "Payment capture failed.");
-        }
+      const data = await res.json();
+      console.log("PayPal Response Data:", data);
 
+      // 2. Check for success OR the specific "Already Captured" error
+      // PayPal usually returns a 422 Unprocessable Entity for already captured orders
+      const isSuccess = res.ok || data?.status === "COMPLETED";
+      
+      const isAlreadyCaptured = 
+        data?.name === "UNPROCESSABLE_ENTITY" && 
+        data?.details?.some((d: any) => d.issue === "ORDER_ALREADY_COMPLETED");
+
+      if (isSuccess || isAlreadyCaptured) {
+        console.log("Success! Payment is confirmed.");
         setState("success");
-      } catch (err: any) {
-        setState("error");
-        setErrorMessage(
-          err?.message ||
-            "We could not complete your payment. Please contact support."
-        );
+      } else {
+        // If it's a real error, show the specific message from PayPal
+        throw new Error(data?.message || "Payment capture failed.");
       }
-    };
+    } catch (err: any) {
+      console.error("Capture Error:", err);
+      setState("error");
+      setErrorMessage(err?.message || "Confirmation failed. Please check your dashboard.");
+    }
+  };
 
-    capture();
-  }, [orderId]);
+  capture();
+}, [searchParams]); // Trigger on any URL change
 
   /* =========================
      Shared layout wrapper

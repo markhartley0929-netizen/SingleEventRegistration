@@ -249,3 +249,22 @@
     overscroll-behavior: auto;
   }
 }
+
+/* Fix PayPal Card Fields Visibility */
+.paypal-container {
+  background: #ffffff; /* Contrast for the card inputs */
+  padding: 24px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+/* Ensure the heading inside the white container is dark */
+.paypal-container h3 {
+  color: #000000 !important;
+  margin-bottom: 20px;
+}
+
+/* Fix the "Secure checkout with PayPal" text at the bottom of the form */
+.registration-actions div span {
+  color: #9ca3af !important; /* Makes the "Secure checkout" text light gray */
+}
