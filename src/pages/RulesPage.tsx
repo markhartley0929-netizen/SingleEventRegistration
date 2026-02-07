@@ -24,10 +24,8 @@ export default function RulesPage() {
             <div className="rules-block">
               <ul>
                 <li><strong>CO-ED</strong></li>
-                <li><strong>Game Guarantee:</strong> 5-Game Guarantee</li>
-                <li>
-                  <strong>Structure:</strong> 3 pool play games (for seeding) followed by a double-elimination championship bracket.
-                </li>
+                <li>5-Game Guarantee</li>
+                <li>3 pool play games (for seeding) followed by a double-elimination championship bracket.</li>
               </ul>
             </div>
           </div>
