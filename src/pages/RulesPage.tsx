@@ -134,7 +134,7 @@ export default function RulesPage() {
 
           {/* ⚠️ ROSTERS & DISCIPLINE */}
           <div className="rules-card">
-            <h2>⚠️ Rosters, Discipline & Injuries</h2>
+            <h2>⚠️ Injuries, Ejections & No Shows</h2>
             <div className="rules-block">
               <h3>Injuries</h3>
               <ul>
@@ -158,12 +158,21 @@ export default function RulesPage() {
             </div>
           </div>
 
-          {/* 🏆 PRIZES & ⛈️ WEATHER */}
+          {/* 🏆 PRIZES */}
           <div className="rules-card">
-            <h2>🏆 Prizes & ⛈️ Weather</h2>
+            <h2>🏆 Prizes</h2>
             <div className="rules-block">
               <ul>
-                <li><strong>Prizes:</strong> Must be on official roster to receive prizes.</li>
+                <li>Must be on official roster to receive prizes.</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* ⛈️ WEATHER & REFUNDS */}
+          <div className="rules-card">
+            <h2>⛈️ Weather & Refunds</h2>
+            <div className="rules-block">
+              <ul>
                 <li><strong>Weather:</strong> The Director reserves the right to modify game formats (1-pitch, shortened times) due to weather.</li>
                 <li><strong>Refunds:</strong> No refunds are issued after pool play begins.</li>
                 <li>If cancelled during bracket play, prizes are awarded to the top 2 remaining teams based on seeding/run differential.</li>

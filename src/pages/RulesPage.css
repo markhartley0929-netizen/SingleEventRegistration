@@ -9,8 +9,8 @@
   margin-top: 36px;
   display: flex;
   flex-direction: column;
-  gap: 24px; /* Slightly tighter gap for mobile flow */
-  text-align: left; /* Ensures rules are easy to read */
+  gap: 24px; 
+  text-align: left;
 }
 
 /* Subtle card styling */
@@ -38,17 +38,18 @@
 .rules-block + .rules-block {
   margin-top: 22px;
   padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Section titles — SECONDARY (Softballs, Bats, Injuries) */
+/* Section titles — SAME COLOR AS TEXT */
 .rules-block h3 {
   margin-bottom: 12px;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #ef4444; /* WICKD Red accent */
+  color: #ffffff; 
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  opacity: 1; /* Fully opaque to stand out slightly from body text */
 }
 
 /* Lists */
@@ -59,9 +60,10 @@
 }
 
 .rules-block li {
-  margin-bottom: 10px; /* More breathing room for fat-finger scrolling */
+  margin-bottom: 10px;
   line-height: 1.5;
-  opacity: 0.95;
+  color: #ffffff;
+  opacity: 0.9; /* Subtle softness for body text */
   font-size: 1.05rem;
 }
 
@@ -76,14 +78,14 @@
 .rules-block ul ul li {
   font-size: 0.95rem;
   margin-bottom: 6px;
-  opacity: 0.85;
-  color: #e2e8f0;
+  opacity: 0.8;
 }
 
 /* Bold text for emphasis */
 .rules-block li strong {
   color: #ffffff;
   font-weight: 700;
+  opacity: 1;
 }
 
 /* Footer */
@@ -92,19 +94,16 @@
   text-align: center;
   font-weight: 600;
   font-size: 1.1rem;
+  color: #ffffff;
 }
 
-.rules-footer strong {
-  color: #ef4444;
-}
-
-/* Back button */
+/* Back button - Keeping the Brand Red only for the button */
 .rules-back {
   align-self: center;
   background: #ef4444;
   color: #ffffff;
   border: none;
-  padding: 14px 28px; /* Slightly larger for easier tapping */
+  padding: 14px 28px;
   border-radius: 8px;
   font-weight: 700;
   text-decoration: none;
@@ -119,19 +118,14 @@
   transform: translateY(-2px);
 }
 
-/* Mobile Tuning (Mainly for Phones) */
+/* Mobile Tuning */
 @media (max-width: 768px) {
-  .rules-hero {
-    padding: 0 10px;
-  }
-
   .rules-hero h1 {
-    font-size: 1.75rem; /* Prevents title from wrapping weirdly */
+    font-size: 1.75rem;
   }
 
   .rules-card {
     padding: 18px;
-    border-radius: 8px;
   }
 
   .rules-card h2 {
@@ -139,10 +133,6 @@
   }
 
   .rules-block li {
-    font-size: 1rem; /* Slightly smaller text for smaller screens */
-  }
-
-  .rules-container {
-    gap: 16px;
+    font-size: 1rem;
   }
 }
