@@ -120,7 +120,7 @@ export default function RulesPage() {
               <ul>
                 <li><strong>Home Runs:</strong> 6 then an out.</li>
                 <li>60-minute "Drop Dead" game time for pool play.</li>
-                <li>60-minute limit "finish the inning" for Bracket, Championship, and "IF" games.</li>
+                <li>60-minute "finish the inning" for Bracket, Championship, and "IF" games.</li>
                 <li><strong>Run Rules:</strong>
                   <ul>
                     <li>20 runs after 3 innings</li>
