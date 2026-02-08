@@ -5,11 +5,14 @@ export default function RulesPage() {
   return (
     <div className="home">
       <header className="hero rules-hero">
-        <img
-          src="/wickdwear-logo.png"
-          alt="WickdWear"
-          className="logo"
-        />
+        {/* FIX: Wrapped logo in Link to return home */}
+        <Link to="/" className="logo-link">
+          <img
+            src="/wickdwear-logo.png"
+            alt="WickdWear"
+            className="logo"
+          />
+        </Link>
 
         <h1>WICKD Draft Tournament Rules</h1>
         <p className="subhead">
@@ -182,9 +185,15 @@ export default function RulesPage() {
             Have fun & stay <strong>WICKD!</strong>
           </p>
 
-          <Link to="/" className="btn primary rules-back">
-            ← Back to Event
-          </Link>
+          {/* Updated Action Buttons for the bottom */}
+          <div className="actions" style={{ marginTop: '2rem' }}>
+            <Link to="/" className="btn secondary">
+              ← Back to Event
+            </Link>
+            <Link to="/register" className="btn primary">
+              Register Now
+            </Link>
+          </div>
 
         </div>
       </header>
