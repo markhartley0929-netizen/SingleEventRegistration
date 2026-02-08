@@ -24,15 +24,15 @@
   text-align: left;
 }
 
-/* Card styling with a slight left accent */
+/* Subtle card styling */
 .rules-card {
   padding: 24px 26px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  /* This red border-left makes the sections pop */
-  border-left: 4px solid #ef4444; 
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  /* REMOVED the red border-left */
+  /* INCREASED border opacity slightly for definition */
+  border: 1px solid rgba(255, 255, 255, 0.15); 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .rules-card h2 {
