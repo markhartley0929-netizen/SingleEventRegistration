@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 40px 24px;
 }
 
 .hero {
@@ -30,84 +30,37 @@ h1 {
   margin-bottom: 16px;
 }
 
-.meta {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  font-size: 0.95rem;
-  opacity: 0.85;
-  margin-bottom: 28px;
-  flex-wrap: wrap;
-}
-
+/* ACTIONS - Now Mobile Friendly */
 .actions {
   display: flex;
   gap: 16px;
   justify-content: center;
+  flex-wrap: wrap; /* Allows buttons to stack on small screens */
+  position: relative;
+  z-index: 5;
+  margin-top: 2rem;
 }
 
 .btn {
-  padding: 14px 22px;
+  padding: 14px 28px;
   border-radius: 6px;
   text-decoration: none;
-  font-weight: 600;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  min-width: 200px; /* Ensures buttons feel substantial */
 }
 
 .btn:hover {
-  transform: translateY(-1px);
-  opacity: 0.95;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .btn.primary {
   background: #e53935;
   color: #fff;
-}
-
-.btn.secondary {
-  background: transparent;
-  border: 1px solid #555;
-  color: #fff;
-}
-
-.location {
-  margin-top: 20px;
-  font-size: 0.95rem;
-  opacity: 0.9;
-}
-
-.map-link {
-  display: inline-block;
-  margin-top: 8px;
-  margin-bottom: 22px; /* 👈 THIS is the key change */
-  color: #1a73e8;
-  text-decoration: underline;
-  font-weight: 500;
-}
-
-.event-dates {
-  margin-top: 8px;
-  margin-bottom: 14px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: 0.4px;
-  color: #ffffff;
-}
-
-.prizes {
-  margin-top: 24px;
-  margin-bottom: 24px;
-  text-align: center;
-}
-
-.prizes h3 {
-  margin-bottom: 8px;
-  font-size: 1.25rem;
-}
-
-.prizes p {
-  margin: 4px 0;
-  font-size: 1rem;
+  border: none;
 }
 
 .btn.secondary {
@@ -121,140 +74,63 @@ h1 {
   color: black;
 }
 
-.player-counter {
-  margin: 24px auto;
-  padding: 14px 18px;
-  max-width: 420px;
-
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(6px);
-
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-
-  text-align: center;
-
-  /* 🔑 critical fix */
-  pointer-events: none;
-}
-
-.actions {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-
-  /* 🔑 critical fix */
-  position: relative;
-  z-index: 5;
-}
-
-
-.counter-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  opacity: 0.85;
-  margin-bottom: 10px;
-}
-
-.player-counter p {
-  margin: 4px 0;
-  font-size: 0.95rem;
-}
-
-.player-counter strong {
-  font-weight: 600;
-}
-
-.player-counter .summary {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
-
-.full-warning {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  color: #ff5c5c;
-  font-weight: 600;
-}
-
-
-.player-counter hr {
-  margin: 10px 0;
-  border-color: #222;
-}
-
-.full-warning {
-  color: #ff4d4d;
-  font-weight: bold;
-  margin-top: 8px;
-}
-
 .btn.disabled {
-  background: #555;
+  background: #444;
+  color: #888;
   cursor: not-allowed;
+  transform: none;
 }
 
-.tournament-details {
-  margin: 1.5rem 0;
-  padding: 1.25rem;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 12px;
-}
-
-.tournament-details .highlight {
-  color: #ff5252;
-  font-weight: 600;
-}
-
-.tournament-details ul {
-  margin-top: 0.5rem;
-  padding-left: 1.2rem;
-}
-
-.early-bird-callout {
-  margin-bottom: 0.75rem;
-  color: #ff5252;
-  font-weight: 600;
-  text-align: center;
-}
-
-
-/* -----------------------------
-   CONTENT SECTION SPACING FIX
-   ----------------------------- */
-
-/* Space between Entry / Prize / Location groups */
+/* CONTENT SPACING */
 .info-group-wrapper {
   margin: 2.5rem 0;
 }
 
-/* Each major section */
 .section {
-  margin-bottom: 2.75rem; /* 👈 main vertical separation */
+  margin-bottom: 2.75rem;
 }
 
-/* Headings need stronger separation */
-.section h3 {
-  margin-bottom: 1rem;
-}
-
-/* Paragraph rhythm — this kills the wall-of-text feel */
-.section p {
-  margin: 0.55rem 0;
-  line-height: 1.65;
-}
-
-/* Subtle divider between sections (not a card) */
 .section:not(:last-child) {
   padding-bottom: 2rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+.section h3 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.section p {
+  margin: 0.55rem 0;
+  line-height: 1.65;
+}
+
+.highlight {
+  color: #ff5252;
+  font-weight: 600;
+}
+
 .fee-note {
-  font-size: 0.75em;
+  font-size: 0.8rem;
   color: #999;
-  line-height: 1.2;
+  margin-top: -0.4rem !important;
+}
+
+.map-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: #448aff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.map-link:hover {
+  text-decoration: underline;
+}
+
+.event-dates {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
 }

@@ -151,7 +151,7 @@ export default function HomePage() {
         </div>
         */}
 
-        {/* ACTIONS */}
+{/* ACTIONS */}
         <div className="actions">
           {!isEventFull ? (
             <Link to="/register" className="btn primary">
@@ -162,6 +162,11 @@ export default function HomePage() {
               Event Full
             </button>
           )}
+
+          {/* New Rules Button */}
+          <Link to="/rules" className="btn secondary">
+            Tournament Rules
+          </Link>
 
           {/*
           <Link to="/registrations" className="btn secondary">
