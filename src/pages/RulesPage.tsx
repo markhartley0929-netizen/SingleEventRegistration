@@ -119,7 +119,7 @@ export default function RulesPage() {
             <div className="rules-block">
               <ul>
                 <li><strong>Home Runs:</strong> 6 then an out.</li>
-                <li><strong>Time Limits:</strong> 60-minute "Drop Dead" game time for pool play.</li>
+                <li>60-minute "Drop Dead" game time for pool play.</li>
                 <li>60-minute limit "finish the inning" for Bracket, Championship, and "IF" games.</li>
                 <li><strong>Run Rules:</strong>
                   <ul>
