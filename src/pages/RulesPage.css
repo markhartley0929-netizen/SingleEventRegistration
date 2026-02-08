@@ -29,8 +29,6 @@
   padding: 24px 26px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.04);
-  /* REMOVED the red border-left */
-  /* INCREASED border opacity slightly for definition */
   border: 1px solid rgba(255, 255, 255, 0.15); 
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
@@ -57,9 +55,9 @@
   margin-bottom: 12px;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #ef4444; /* Changed to red to make sub-headings clear */
+  color: #ef4444; 
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
 }
 
 /* Lists - Improved for Readability */
@@ -90,7 +88,7 @@
 
 /* Nested Lists */
 .rules-block ul ul li::before {
-  content: "◦"; /* Different bullet for nested items */
+  content: "◦"; 
   color: #999;
 }
 
@@ -100,7 +98,7 @@
   font-weight: 700;
 }
 
-/* Footer & Buttons */
+/* Footer Section */
 .rules-footer {
   margin: 40px 0 20px 0;
   text-align: center;
@@ -110,13 +108,49 @@
   font-style: italic;
 }
 
-/* Use the same 'actions' style from your Home Page for consistency */
+/* Bottom Actions - Layout Fix */
 .actions {
   display: flex;
   gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 60px;
+  margin: 20px 0 80px 0;
+}
+
+/* Button Base - Matches Home Page Styles */
+.btn {
+  padding: 14px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  min-width: 210px; /* Ensures balanced width */
+  text-align: center; /* Centers text alignment */
+  display: inline-block;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.btn.primary {
+  background: #e53935;
+  color: #fff;
+  border: none;
+}
+
+.btn.secondary {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.btn.secondary:hover {
+  background: white;
+  color: black;
 }
 
 /* Mobile Tuning */
@@ -133,5 +167,9 @@
 
   .rules-card h2 {
     font-size: 1.25rem;
+  }
+
+  .btn {
+    width: 100%; /* Stacks full width on small screens */
   }
 }
