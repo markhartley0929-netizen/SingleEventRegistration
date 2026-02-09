@@ -15,8 +15,8 @@ const DraftEngine: React.FC = () => {
           />
         </Link>
 
-        <h1>The Player’s Guarantee</h1>
-        <p className="subhead">How Our Proprietary Auto Draft Engine Works</p>
+        <h1>How Our Proprietary Auto Draft Engine Works</h1>
+      
 
         <div className="rules-container">
           
