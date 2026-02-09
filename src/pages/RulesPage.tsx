@@ -22,16 +22,32 @@ export default function RulesPage() {
         <div className="rules-container">
 
           {/* 🏆 FORMAT */}
-          <div className="rules-card">
-            <h2>🏆 Format</h2>
-            <div className="rules-block">
-              <ul>
-                <li><strong>CO-ED</strong></li>
-                <li>5-Game Guarantee</li>
-                <li>3 pool play games (for seeding) followed by a double-elimination championship bracket.</li>
-              </ul>
-            </div>
-          </div>
+<div className="rules-card">
+  <h2>🏆 Format</h2>
+  <div className="rules-block">
+    <ul>
+      <li><strong>CO-ED Auto Draft</strong></li>
+      <li>
+        <Link 
+          to="/draft-engine" 
+          style={{ 
+            color: "#ef4444", 
+            fontSize: "0.9rem", 
+            textDecoration: "underline", 
+            display: "block",
+            marginTop: "-8px",
+            marginBottom: "12px",
+            marginLeft: "20px" // Aligns under the bullet text
+          }}
+        >
+          Learn how the Auto Draft Engine builds fair teams →
+        </Link>
+      </li>
+      <li>5-Game Guarantee</li>
+      <li>3 pool play games (for seeding) followed by a double-elimination championship bracket.</li>
+    </ul>
+  </div>
+</div>
 
           {/* 🥎 EQUIPMENT */}
           <div className="rules-card">

@@ -68,6 +68,14 @@ export default function HomePage() {
               🔥 10% Early Bird Discount until {EARLY_BIRD_DEADLINE}
             </p>
 
+            {/* Added the Auto Draft highlight here */}
+            <p>
+              <strong>🛡️ CO-ED Auto Draft Format</strong><br />
+              <Link to="/draft-engine" style={{ color: "#ef4444", fontSize: "0.9rem", textDecoration: "underline", fontWeight: "bold" }}>
+                Learn how the Auto Draft Engine builds fair teams →
+              </Link>
+            </p>
+
             <p>
               <strong>5 Game Guarantee</strong>
             </p>
@@ -107,7 +115,7 @@ export default function HomePage() {
             </p>
 
             <a
-              href="https://www.google.com/maps/search/?api=1&query=2200+Lee+Rd+Orlando+FL+32810"
+              href="https://www.google.com/maps"
               target="_blank"
               rel="noopener noreferrer"
               className="map-link"
@@ -151,7 +159,7 @@ export default function HomePage() {
         </div>
         */}
 
-{/* ACTIONS */}
+        {/* ACTIONS */}
         <div className="actions">
           {!isEventFull ? (
             <Link to="/register" className="btn primary">
