@@ -1,34 +1,26 @@
-
-/* Import the core rules layout if they are in the same folder */
-/* @import "./RulesPage.css"; */
-
-/* Engine-Specific Accents */
-.engine-audit-box {
+/* Custom spacing for the "The Result" summary paragraph */
+.rules-summary {
   margin-top: 18px;
-  padding: 16px;
-  background: rgba(239, 68, 68, 0.1); /* Subtle red tint */
-  border-left: 4px solid #ef4444;
-  border-radius: 4px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   font-style: italic;
-}
-
-.engine-audit-box strong {
-  color: #ef4444 !important;
-}
-
-.seed-highlight {
-  background: rgba(255, 255, 255, 0.08);
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-family: 'Courier New', Courier, monospace;
-  color: #ef4444;
-}
-
-/* Ensure sub-headers in blocks look consistent */
-.rules-block h4 {
-  margin: 15px 0 8px 0;
+  opacity: 0.8;
   color: #ffffff;
-  font-size: 1.05rem;
+}
+
+/* Standardizing the Seed highlight to match your white text */
+.seed-highlight {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Ensure h3 and h4 headers in blocks match the red accent from your Rules page */
+.rules-block h3, 
+.rules-block h4 {
+  margin: 20px 0 12px 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ef4444; 
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
 }
