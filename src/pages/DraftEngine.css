@@ -1,23 +1,38 @@
-/* Custom spacing for the "The Result" summary paragraph */
-.rules-summary {
-  margin-top: 18px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  font-style: italic;
+/* Reduce the size of the main page title */
+.rules-hero h1 {
+  font-size: 2.2rem; /* Adjusted down from your original home/rules size */
+  margin-bottom: 8px;
+  letter-spacing: 0.01em;
+}
+
+/* Ensure the subhead stays proportional */
+.rules-hero .subhead {
+  font-size: 1.1rem;
   opacity: 0.8;
-  color: #ffffff;
+  margin-bottom: 24px;
 }
 
-/* Standardizing the Seed highlight to match your white text */
-.seed-highlight {
-  font-weight: 700;
+/* Adjust "The Result" to match the second image (no red box) */
+.rules-summary {
+  margin-top: 20px;
+  padding-top: 0;      /* Removed top padding */
+  border-top: none;    /* Removed the border line */
+  font-style: normal;  /* Set back to normal if you prefer it non-italic */
+  line-height: 1.6;
   color: #ffffff;
+  font-size: 1.05rem;
 }
 
-/* Ensure h3 and h4 headers in blocks match the red accent from your Rules page */
-.rules-block h3, 
+/* Style "The Result:" prefix specifically if desired */
+.rules-summary strong {
+  color: #ffffff;
+  font-weight: 800;
+  text-transform: none; 
+}
+
+/* Standardizing secondary headers (like "The Digital Receipt") */
 .rules-block h4 {
-  margin: 20px 0 12px 0;
+  margin: 22px 0 12px 0;
   font-size: 1.1rem;
   font-weight: 700;
   color: #ef4444; 
