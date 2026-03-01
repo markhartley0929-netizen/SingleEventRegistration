@@ -64,10 +64,6 @@ export default function HomePage() {
               3% processing fee applies
             </p>
 
-            <p className="highlight">
-              🔥 10% Early Bird Discount until {EARLY_BIRD_DEADLINE}
-            </p>
-
             {/* Added the Auto Draft highlight here */}
             <p>
               <strong>🛡️ CO-ED Auto Draft Format</strong><br />

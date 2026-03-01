@@ -773,33 +773,34 @@ const getFieldStyle = (value: string | undefined) => {
   <h3 style={{ textAlign: "center", marginBottom: 16, color: "#fff" }}>Complete Your Payment</h3>
   <PayPalButtons
     style={{ layout: "vertical", shape: "pill" }}
-    createOrder={async () => {
-      // 1. Create the order with PayPal
-      const res = await fetch("/api/paypalCreateOrder", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ hasCompanion: registeringWithCompanion }),
-      });
-      const order = await res.json();
+createOrder={async () => {
+  const res = await fetch("/api/paypalCreateOrder", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ 
+      eventId,
+      hasCompanion: registeringWithCompanion,
+      repCode: primary.repCode?.trim() || null
+    }),
+  });
 
-      // 2. WAIT for the database to link the Order ID to your Registrations
-      // This is the critical "Fix" — we MUST await this before returning the ID
-      const attachRes = await fetch("/api/attachPayPalOrder", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          orderId: order.orderId, 
-          registrationIds: savedRegIds 
-        }),
-      });
+  const order = await res.json();
 
-      if (!attachRes.ok) {
-        throw new Error("Failed to link payment to registration. Please try again.");
-      }
+  const attachRes = await fetch("/api/attachPayPalOrder", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ 
+      orderId: order.orderId, 
+      registrationIds: savedRegIds 
+    }),
+  });
 
-      // 3. Now it is safe to return the ID to PayPal
-      return order.orderId;
-    }}
+  if (!attachRes.ok) {
+    throw new Error("Failed to link payment to registration. Please try again.");
+  }
+
+  return order.orderId;
+}}
 onApprove={async (data, actions) => {
   try {
     // 1. Capture the order on the backend
