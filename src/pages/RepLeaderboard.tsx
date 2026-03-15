@@ -18,11 +18,7 @@ interface RepLeaderboardRow {
 // ----------------------------------
 const EVENT_ID = "b04de545-5aee-4403-86b1-03db1e5c4a86";
 
-const API_BASE =
-  "https://wickdsports.com";
-
-const API_URL = `${API_BASE}/api/getrepleaderboard?eventId=${EVENT_ID}`;
-
+const API_URL = `/api/getrepleaderboard?eventId=${EVENT_ID}`;
 // ----------------------------------
 // Component
 // ----------------------------------
