@@ -19,7 +19,7 @@ interface Player {
 const EVENT_ID = "b04de545-5aee-4403-86b1-03db1e5c4a86";
 
 const API_BASE =
-  "https://single-event-registration-api-v2-cqd5bferhcbsftda.centralus-01.azurewebsites.net";
+  "https://wickdsports.com";
 
 const API_URL = `${API_BASE}/api/getregistrations?eventId=${EVENT_ID}`;
 
